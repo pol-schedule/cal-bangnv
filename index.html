@@ -412,6 +412,56 @@ body{background-image:none}
 .hero{padding-block:36px 4px}
 @media (max-width:860px){.controls{grid-template-columns:minmax(0,1fr)}.info-grid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px){.zone{padding:18px 14px 20px;border-radius:14px;margin-top:20px}.ctl .tabs,.ctl .modes{width:100%}}
+
+/* ===== 見やすさ調整 v2 ===== */
+.zone{border:0;gap:14px;padding:20px 20px 22px}
+.zone-head{padding-bottom:0;border-bottom:0;gap:2px}
+.zone-head h2{font-size:clamp(19px,3vw,22px)}
+.zone-head p{font-size:13px}
+.zone .box{border-color:transparent;box-shadow:0 1px 3px rgba(20,25,45,.07)}
+.z-list .box,.z-list .card,.z-list .cal,.z-list .mcal,.z-list .rows,.z-list .ybox{border-color:var(--line);box-shadow:none}
+.sp-only{display:none}
+.nexts{padding-top:14px;gap:14px}
+.nx{padding:18px 14px 12px}
+.controls{grid-template-columns:auto auto;justify-content:start;gap:10px 16px;align-items:center}
+.ctl-wide{grid-column:1/-1}
+.tabs,.modes{box-shadow:none!important;background:var(--bg)!important;border-color:var(--line)!important}
+.filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none}
+.range{margin-top:4px}
+.range h3{font-size:26px}
+.month-list{gap:10px}
+.card{padding:12px 16px;gap:14px}
+.card h4{font-size:15.5px}
+.card .meta{font-size:12.5px}
+.sticker{font-size:14px;padding:6px 14px}
+@media (max-width:640px){
+  .hero{padding-block:22px 0;gap:10px}
+  .hero h1{font-size:46px}
+  .sticker small{font-size:12px}
+  .zone{padding:16px 14px 18px;margin-top:16px}
+  .sp-only{display:inline}
+  .nexts{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:-14px;padding:14px 14px 4px;scrollbar-width:none}
+  .nexts::-webkit-scrollbar{display:none}
+  .nexts .nx .datebig{min-width:56px}
+  .nexts .nx{flex:0 0 84%;scroll-snap-align:start;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"date body" "cd cd"}
+  .nexts .nx .countdown{flex-direction:row;justify-self:end;padding:2px 12px;border-radius:999px;gap:3px;font-size:13px}
+  .nexts .nx.first{grid-column:auto}
+  .controls{grid-template-columns:minmax(0,1fr)}
+  .ctl .tabs,.ctl .modes{width:100%}
+  .tab,.mode{padding:5px 4px;font-size:13.5px}
+  .range{flex-wrap:nowrap}
+  .range h3{font-size:22px}
+  .range h3 span{font-size:12px;margin-left:6px}
+  .nav button{width:34px;height:34px}.nav .today{padding:0 10px;font-size:12.5px}
+  .card{grid-template-columns:44px minmax(0,1fr) 54px;gap:10px;padding:10px 12px}
+  .card .datebig{min-width:0}
+  .card .datebig .d{font-size:24px}.card .datebig .m{font-size:12px}.card .datebig .w{font-size:11px}
+  .card h4{font-size:14.5px;line-height:1.4}
+  .card .meta{flex-direction:column;gap:0;align-items:flex-start}
+  .card .meta span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+}
 </style>
 </head>
 <body>
@@ -430,7 +480,7 @@ body{background-image:none}
     <div class="zone-head">
       <span class="zone-label">Our Purpose</span>
       <h2 id="zA">私たちの想い</h2>
-      <p>グループ名「Purpose of Life」に込めた意味をまとめています。</p>
+      <p>グループ名に込めた意味です。</p>
     </div>
     <details class="manifesto box fold">
       <summary><span class="sum-main">この名前にこめた想い</span><span class="sum-sub">ときどき開いてご覧ください</span><span class="chev" aria-hidden="true">＋</span></summary>
@@ -447,7 +497,7 @@ body{background-image:none}
     <div class="zone-head">
       <span class="zone-label">Up Next</span>
       <h2 id="zB">直近の予定</h2>
-      <p>これから開催されるセミナー・イベントを、日付の近い順に3件ご案内しています。</p>
+      <p>日付の近い順に3件。<span class="sp-only">横にスクロールできます。</span></p>
     </div>
     <div class="nexts" id="next"></div>
   </section>
@@ -456,23 +506,23 @@ body{background-image:none}
     <div class="zone-head">
       <span class="zone-label">Schedule</span>
       <h2 id="zC">日程一覧</h2>
-      <p>期間（1ヶ月・3ヶ月・半年・年間）と、表示方法（リスト・カレンダー）を切り替えてご覧いただけます。イベントをタップすると、フライヤーと詳細が表示されます。</p>
+      <p>期間と表示を切り替えられます。タップで詳細が開きます。</p>
     </div>
 
     <div class="controls">
-      <div class="ctl"><span class="ctl-l">期間</span>
+      <div class="ctl">
       <div class="tabs box" role="tablist" aria-label="表示期間">
         <button class="tab" role="tab" id="tab-month" data-v="month" aria-selected="true">1ヶ月</button>
         <button class="tab" role="tab" id="tab-q" data-v="q" aria-selected="false">3ヶ月</button>
         <button class="tab" role="tab" id="tab-h" data-v="h" aria-selected="false">半年</button>
         <button class="tab" role="tab" id="tab-y" data-v="y" aria-selected="false">年間</button>
       </div></div>
-      <div class="ctl"><span class="ctl-l">表示</span>
+      <div class="ctl">
       <div class="modes box" role="group" aria-label="表示のしかた">
         <button type="button" class="mode" data-m="list" aria-pressed="true"><span aria-hidden="true">☰</span> リスト</button>
         <button type="button" class="mode" data-m="cal" aria-pressed="false"><span aria-hidden="true">▦</span> カレンダー</button>
       </div></div>
-      <div class="ctl ctl-wide"><span class="ctl-l">種類<small>色の見かた・タップで絞り込み</small></span>
+      <div class="ctl ctl-wide"><span class="ctl-l">種類（色の見かた／タップで絞り込み）</span>
       <div class="filters" id="filters" aria-label="種類で絞り込み"></div></div>
     </div>
 
@@ -492,7 +542,7 @@ body{background-image:none}
     <div class="zone-head">
       <span class="zone-label">Information</span>
       <h2 id="zD">ご案内</h2>
-      <p>カレンダーへの登録方法と、イベント情報のご提供についてのご案内です。</p>
+      <p>カレンダー登録と、情報提供のお願いです。</p>
     </div>
     <div class="info-grid">
       <div class="subscribe box">
