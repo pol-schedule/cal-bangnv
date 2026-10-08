@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="googlebot" content="noindex,nofollow">
+<title>Purpose of Life Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,600,100,1;1,9..144,500,100,1;1,9..144,700,100,1&family=Dela+Gothic+One&family=Yomogi&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}
+
+/* Layout: パリのカフェの黒板×ステッカー帳。太い線と少し傾いたシールで遊び心、色はトリコロールをポップに。 */
+:root{
+  --bg:#F1F3FB; --paper:#FFFFFF; --ink:#1A1D33; --ink-2:#4B5072; --ink-3:#8B90AD;
+  --edge:#1A1D33; --line:#D7DBEC;
+  --bleu:#2B48E8; --rouge:#E8473B; --soleil:#FFC83D; --menthe:#1F9D7A;
+  --t-seminar:#2B48E8; --t-seminar-bg:#DFE5FF;
+  --t-brief:#D93A2F; --t-brief-bg:#FFE2DE;
+  --t-event:#8A5D00; --t-event-bg:#FFF0C4;
+  --t-study:#167A5E; --t-study-bg:#D5F2E8;
+  --t-meet:#7338C2; --t-meet-bg:#EEE2FC;
+  --f-display:"Fraunces","Georgia",serif;
+  --f-punch:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
+  --f-hand:"Yomogi","Klee One","Hiragino Maru Gothic ProN",cursive;
+  --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12142A; --paper:#1D2042; --ink:#F1F2FA; --ink-2:#BFC3DE; --ink-3:#8086A8;
+  --edge:#8A93E0; --line:#2E3260;
+  --bleu:#8FA2FF; --rouge:#FF8A7E; --soleil:#FFD466; --menthe:#5FD3AF;
+  --t-seminar:#AEBBFF; --t-seminar-bg:#262E66;
+  --t-brief:#FF9F94; --t-brief-bg:#4A2430;
+  --t-event:#FFD979; --t-event-bg:#463A1A;
+  --t-study:#7FE0C1; --t-study-bg:#173F38;
+  --t-meet:#CDAEFF; --t-meet-bg:#34245A;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12142A; --paper:#1D2042; --ink:#F1F2FA; --ink-2:#BFC3DE; --ink-3:#8086A8;
+  --edge:#8A93E0; --line:#2E3260;
+  --bleu:#8FA2FF; --rouge:#FF8A7E; --soleil:#FFD466; --menthe:#5FD3AF;
+  --t-seminar:#AEBBFF; --t-seminar-bg:#262E66;
+  --t-brief:#FF9F94; --t-brief-bg:#4A2430;
+  --t-event:#FFD979; --t-event-bg:#463A1A;
+  --t-study:#7FE0C1; --t-study-bg:#173F38;
+  --t-meet:#CDAEFF; --t-meet-bg:#34245A;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.8;padding-inline:20px;padding-block:0 64px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px}
+.wrap{max-width:1080px;margin:0 auto}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--soleil);outline-offset:2px}
+.box{background:var(--paper);border:2px solid var(--edge);border-radius:14px;box-shadow:4px 4px 0 var(--edge)}
+
+/* ---------- Hero ---------- */
+.hero{padding-block:36px 8px;display:grid;justify-items:center;text-align:center;gap:14px;position:relative}
+.eyebrow{font-family:var(--f-hand);font-size:15px;color:var(--ink-2);background:var(--paper);border:2px dashed var(--ink-3);border-radius:999px;padding:2px 16px}
+.title-wrap{position:relative;display:inline-block;margin-top:6px}
+.hero h1{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(50px,11vw,112px);line-height:.95;letter-spacing:-.02em;font-variation-settings:"SOFT" 100,"WONK" 1}
+.hero h1 .of{font-style:italic;font-weight:500;color:var(--rouge)}
+.hero h1 .p{color:var(--bleu)}
+.hero h1 .l{position:relative}
+.hero h1 .l::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.22em;background:var(--soleil);z-index:-1;border-radius:4px;transform:rotate(-1.5deg)}
+.note{position:absolute;font-family:var(--f-hand);font-size:15px;line-height:1.35;color:var(--ink-2);white-space:nowrap}
+.note.n1{right:-8px;top:-30px;transform:rotate(4deg)}
+.sticker{display:inline-block;background:var(--soleil);color:#1A1D33;font-family:var(--f-punch);font-size:clamp(14px,2.4vw,18px);padding:6px 16px;border:2px solid var(--edge);border-radius:10px;transform:rotate(-2.5deg);box-shadow:3px 3px 0 var(--edge);margin-top:10px;line-height:1.5}
+.sticker small{display:block;font-family:var(--f-hand);font-size:14px;font-weight:400}
+.manifesto{max-width:620px;margin-top:14px;text-align:left;position:relative}
+.manifesto h2{margin:0 0 8px;font-family:var(--f-punch);font-weight:400;font-size:clamp(18px,3.2vw,23px);line-height:1.5;text-wrap:balance}
+.manifesto h2 mark{background:linear-gradient(transparent 58%,var(--soleil) 58%);color:inherit;padding:0 2px}
+.manifesto p{margin:0 0 10px;color:var(--ink-2)}
+.manifesto p:last-child{margin:0}
+.manifesto .bow{font-family:var(--f-hand);font-size:17px;color:var(--ink)}
+
+/* ---------- Section head ---------- */
+.sched{padding-top:24px;display:grid;gap:22px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px}
+.sec-head h2{margin:0;font-family:var(--f-punch);font-weight:400;font-size:clamp(22px,4vw,30px);line-height:1.35}
+.sec-head h2 small{display:block;font-family:var(--f-display);font-style:italic;font-size:16px;color:var(--rouge);font-weight:500}
+.btn-propose{border:2px solid var(--edge);background:var(--rouge);color:#fff;border-radius:999px;padding:9px 20px;font-weight:700;font-size:14.5px;box-shadow:3px 3px 0 var(--edge);transition:transform .12s,box-shadow .12s}
+.btn-propose:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--edge)}
+.btn-propose:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--edge)}
+/* 折りたたみ */
+.fold{padding:0;width:100%}
+.fold summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;padding:12px 56px 12px 18px;position:relative;text-align:left}
+.fold summary::-webkit-details-marker{display:none}
+.fold .sum-main{font-family:var(--f-punch);font-size:16px;line-height:1.5}
+.fold .sum-sub{font-family:var(--f-hand);font-size:14px;color:var(--ink-2)}
+.fold .chev{position:absolute;right:14px;top:50%;margin-top:-15px;width:30px;height:30px;border-radius:50%;border:2px solid var(--edge);background:var(--soleil);color:#1A1D33;display:grid;place-items:center;font-weight:700;transition:transform .2s}
+.fold[open] .chev{transform:rotate(45deg)}
+.fold .fold-body{padding:4px 22px 20px;border-top:2px dashed var(--line);margin:0 18px;padding-inline:0;padding-top:14px}
+.help{background:var(--t-brief-bg);border-style:dashed}
+.help .sum-main{color:var(--rouge)}
+.help-face{width:34px;height:34px;border-radius:50%;background:var(--paper);border:2px solid var(--edge);display:grid;place-items:center;font-size:17px}
+.help-body p{margin:0 0 6px;color:var(--ink-2);font-size:14.5px}
+.help-body p:last-child{margin:0}
+.help-body b{color:var(--ink)}
+.help .fold-body{border-top-color:var(--t-brief)}
+.hand{font-family:var(--f-hand);font-size:15px}
+.sample-note{font-family:var(--f-hand);font-size:14px;color:var(--ink-3);margin:-12px 0 0}
+
+/* Next up */
+.nexts{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px;padding-top:12px}
+.nx{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"date body" "cd cd";gap:10px 14px;align-items:center;padding:20px 16px 14px;cursor:pointer;position:relative;transition:transform .15s,box-shadow .15s}
+.nx:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--edge)}
+.nx .datebig{grid-area:date}.nx .nx-b{grid-area:body;min-width:0;display:grid;gap:3px;justify-items:start}
+.nx .countdown{grid-area:cd}
+.nx.first{background:var(--t-event-bg)}
+.nx .stamp{position:absolute;top:-16px;left:18px;background:var(--bleu);color:#fff;font-family:var(--f-punch);font-size:13px;padding:2px 14px;border-radius:999px;border:2px solid var(--edge);transform:rotate(-4deg)}
+.datebig{text-align:center;min-width:72px;display:grid;gap:0}
+.datebig .m{font-family:var(--f-display);font-style:italic;font-size:14px;color:var(--rouge);font-weight:500}
+.datebig .d{font-family:var(--f-display);font-weight:600;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
+.datebig .w{font-size:12.5px;color:var(--ink-2);font-weight:500}
+.nx h3{margin:0;font-family:var(--f-punch);font-weight:400;font-size:15.5px;line-height:1.45;text-wrap:balance}
+.nx.first h3{font-size:17px}
+.nx .meta{font-size:12.5px}
+.meta{color:var(--ink-2);font-size:13.5px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
+.countdown{justify-self:end;background:var(--paper);color:var(--ink);border:2px solid var(--edge);border-radius:999px;padding:2px 14px;font-family:var(--f-hand);font-size:14px;line-height:1.4;display:flex;align-items:baseline;gap:3px;transform:rotate(-2deg)}
+.countdown b{font-family:var(--f-display);font-size:24px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums;color:var(--rouge)}
+.nx.first .countdown{background:var(--soleil);color:#1A1D33}
+.nx.first .countdown b{font-size:30px;color:#1A1D33}
+
+/* Controls */
+.controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between}
+.tabs{display:flex;gap:6px;padding:5px;border-radius:999px}
+.tab{border:0;background:transparent;padding:6px 18px;border-radius:999px;font-size:14.5px;font-weight:700;color:var(--ink-2)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--c);background:var(--cb);color:var(--c);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="false"]{background:transparent;opacity:.5;text-decoration:line-through}
+
+/* Range header */
+.range{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.range h3{margin:0;font-family:var(--f-display);font-weight:600;font-size:32px;line-height:1.1}
+.range h3 span{font-family:var(--f-hand);font-size:15px;color:var(--ink-2);margin-left:10px;font-weight:400}
+.nav{display:flex;gap:8px}
+.nav button{width:40px;height:40px;border-radius:50%;border:2px solid var(--edge);background:var(--paper);font-size:18px;font-weight:700;display:grid;place-items:center;box-shadow:2px 2px 0 var(--edge)}
+.nav button:active{transform:translate(2px,2px);box-shadow:none}
+.nav .today{width:auto;padding:0 16px;border-radius:999px;font-size:13.5px}
+
+/* Type tag */
+.ty-seminar{--c:var(--t-seminar);--cb:var(--t-seminar-bg)}
+.ty-brief{--c:var(--t-brief);--cb:var(--t-brief-bg)}
+.ty-event{--c:var(--t-event);--cb:var(--t-event-bg)}
+.ty-study{--c:var(--t-study);--cb:var(--t-study-bg)}
+.ty-meet{--c:var(--t-meet);--cb:var(--t-meet-bg)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:0 9px;border-radius:999px;white-space:nowrap;color:var(--c);background:var(--cb);border:1.5px solid var(--c);line-height:1.6}
+
+/* ---------- Month calendar ---------- */
+.cal{overflow:hidden;padding:0}
+.cal-head,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal-head div{font-weight:700;font-size:12.5px;text-align:center;padding:8px 0;border-bottom:2px solid var(--edge);background:var(--bg)}
+.cal-head div:first-child{color:var(--rouge)}.cal-head div:last-child{color:var(--bleu)}
+.cell{min-height:112px;border-right:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:6px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.cell:nth-child(7n){border-right:0}
+.cell.out{background:var(--bg)}
+.cell.out .num{opacity:.3}
+.num{font-family:var(--f-display);font-weight:600;font-size:15px;font-variant-numeric:tabular-nums;width:28px;height:28px;display:grid;place-items:center;border-radius:50%}
+.cell.today .num{background:var(--soleil);color:#1A1D33;border:2px solid var(--edge)}
+.pills{display:grid;gap:4px}
+.pill{border:0;text-align:left;font-size:11.5px;line-height:1.35;padding:3px 7px;border-radius:7px;background:var(--cb);color:var(--c);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;font-weight:500}
+.pill .ps{display:none}
+.pill b{font-weight:700;font-variant-numeric:tabular-nums;margin-right:4px}
+.month-list{display:grid;gap:12px;margin-top:24px}
+
+/* ---------- Event card ---------- */
+.card{display:grid;grid-template-columns:70px 84px minmax(0,1fr);grid-template-areas:"date fly body";gap:18px;align-items:center;padding:12px 18px;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translate(-2px,-2px) rotate(-.3deg);box-shadow:6px 6px 0 var(--edge)}
+.card .datebig{grid-area:date}.card .flyer,.card .flyer-img{grid-area:fly}.card .body{grid-area:body}
+.card .datebig .d{font-size:34px}
+.card h4{margin:0;font-family:var(--f-punch);font-weight:400;font-size:16.5px;line-height:1.5}
+.card .body{min-width:0;display:grid;gap:4px;justify-items:start}
+
+/* Flyer placeholder */
+.flyer{aspect-ratio:1/1.414;width:100%;max-width:100%;border-radius:6px;background:var(--cb);color:var(--c);display:grid;align-content:space-between;padding:10% 10%;position:relative;overflow:hidden;border:2px solid var(--c);transform:rotate(-2deg)}
+.flyer::before{content:"";position:absolute;right:-20%;top:-12%;width:70%;aspect-ratio:1;border-radius:50%;background:var(--c);opacity:.18}
+.flyer .ft{font-family:var(--f-display);font-style:italic;font-weight:500;font-size:10px;line-height:1.1;position:relative}
+.flyer .fn{font-family:var(--f-punch);font-size:9.5px;line-height:1.4;position:relative}
+.flyer .fd{font-family:var(--f-display);font-weight:600;font-size:20px;line-height:1;position:relative}
+.flyer.big .ft{font-size:20px}.flyer.big .fn{font-size:17px}.flyer.big .fd{font-size:44px}
+
+.flyer-img{display:block;width:100%;max-width:100%;aspect-ratio:1/1.35;object-fit:cover;object-position:top;border-radius:6px;border:2px solid var(--edge);transform:rotate(-2deg);background:var(--bg)}
+.flyer-img.big{aspect-ratio:auto;object-fit:contain;transform:rotate(-1deg);cursor:zoom-in;box-shadow:4px 4px 0 var(--edge)}
+.fly-col{display:grid;gap:6px;justify-items:center;align-content:start}
+.zoom-hint{font-size:13px;color:var(--ink-3)}
+.modal.zoomed{grid-template-columns:minmax(0,1fr);max-width:820px}
+.modal.zoomed .flyer-img.big{transform:none;cursor:zoom-out;max-width:100%}
+.modal.zoomed .fly-col .flyer-img.big{max-width:100%}
+.dl dd .sub{font-size:12.5px;color:var(--ink-3)}
+.modes{display:flex;gap:4px;padding:5px;border-radius:999px}
+.mode{border:0;background:transparent;padding:6px 14px;border-radius:999px;font-size:14px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.mode[aria-pressed="true"]{background:var(--bleu);color:#fff}
+.mcals{display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.mcals.y{grid-template-columns:repeat(4,minmax(0,1fr))}
+.mcal{padding:12px;display:grid;gap:8px;align-content:start}
+.mcal.now{background:var(--t-event-bg)}
+.mcal.past{opacity:.5}
+.mcal-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px dashed var(--line);padding-bottom:4px}
+.mcal-h b{font-family:var(--f-display);font-weight:600;font-size:22px}
+.mcal-h span{font-family:var(--f-hand);font-size:13px;color:var(--ink-2)}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.mw{font-size:11px;font-weight:700;text-align:center;color:var(--ink-3)}
+.mw.sun{color:var(--rouge)}.mw.sat{color:var(--bleu)}
+.mday{border:0;background:none;padding:0;min-width:0;font-size:12px;color:var(--ink);display:grid;justify-items:center;align-content:start;gap:2px}
+.mday i{font-style:normal;font-family:var(--f-display);font-weight:600;font-variant-numeric:tabular-nums;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;line-height:1}
+.mday.today i{background:var(--soleil);color:#1A1D33;outline:2px solid var(--edge)}
+.mday.lab{min-height:64px;border-top:1px dashed var(--line);padding-top:2px;justify-items:stretch}
+.mday.lab i{justify-self:center}
+.mp{display:block;font-size:10.5px;line-height:1.3;padding:1px 4px;border-radius:5px;background:var(--cb);color:var(--c);font-weight:700;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:left}
+.mlist{display:grid;gap:2px;border-top:2px dashed var(--line);padding-top:6px}
+.ml{display:grid;grid-template-columns:22px 8px minmax(0,1fr);gap:7px;align-items:center;border:0;background:none;text-align:left;padding:1px 0;font-size:12.5px;line-height:1.4}
+.ml b{font-family:var(--f-display);font-weight:600;font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.ml .dt{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.ml .tt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.ml:hover .tt{text-decoration:underline wavy var(--c)}
+.mday.dot{aspect-ratio:1;place-content:center;position:relative}
+.mday.dot.has i{background:var(--cb);color:var(--c);outline:2px solid var(--c)}
+.mday.dot em{position:absolute;top:-3px;right:0;font-style:normal;font-size:9.5px;font-weight:700;background:var(--rouge);color:#fff;border-radius:999px;min-width:15px;height:15px;display:grid;place-items:center;padding:0 3px}
+.mday.has{cursor:pointer}
+.mday.has:hover i{transform:scale(1.12)}
+.day-list{display:grid;gap:10px}
+.month-group{display:grid;gap:12px}
+.month-label{display:flex;align-items:baseline;gap:12px;margin-top:12px}
+.month-label h4{margin:0;font-family:var(--f-display);font-weight:600;font-size:26px}
+.month-label span{font-family:var(--f-hand);font-size:15px;color:var(--ink-2)}
+.month-label::after{content:"";flex:1;border-bottom:2px dashed var(--line)}
+
+/* ---------- Half year rows ---------- */
+.rows{padding:0;overflow:hidden}
+.row{display:grid;grid-template-columns:120px minmax(0,1fr);border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.row .mh{padding:14px 16px;border-right:2px solid var(--edge);background:var(--bg);display:grid;align-content:start}
+.row .mh .en{font-family:var(--f-display);font-weight:600;font-size:26px;line-height:1.1}
+.row .mh .jp2{font-family:var(--f-hand);font-size:13.5px;color:var(--ink-2)}
+.row .evs{padding:12px;display:flex;flex-wrap:wrap;gap:10px;align-content:start;min-width:0}
+.mini{border:2px solid var(--c);background:var(--cb);border-radius:10px;padding:7px 12px;display:grid;gap:1px;text-align:left;min-width:0;max-width:100%;transition:transform .12s}
+.mini:hover{transform:rotate(-1deg) scale(1.02)}
+.mini .t{font-size:13.5px;font-weight:700;line-height:1.45;color:var(--ink)}
+.mini .s{font-size:12px;color:var(--ink-2);display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.mini .s b{font-family:var(--f-display);font-size:17px;font-weight:600;color:var(--c);font-variant-numeric:tabular-nums}
+.empty{font-family:var(--f-hand);font-size:15px;color:var(--ink-3);padding:4px 2px}
+
+/* ---------- Year grid ---------- */
+.year{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ybox{padding:12px 14px;display:grid;gap:6px;align-content:start;border-radius:12px;box-shadow:3px 3px 0 var(--edge)}
+.ybox:nth-child(odd){transform:rotate(-.4deg)}.ybox:nth-child(even){transform:rotate(.4deg)}
+.ybox.past{opacity:.5}
+.ybox.now{background:var(--t-event-bg)}
+.ybox .yh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px dashed var(--line);padding-bottom:4px}
+.ybox .yh b{font-family:var(--f-display);font-weight:600;font-size:24px}
+.ybox .yh span{font-family:var(--f-hand);font-size:13px;color:var(--ink-2)}
+.yrow{display:grid;grid-template-columns:24px 9px minmax(0,1fr);gap:8px;align-items:center;font-size:13px;line-height:1.45;border:0;background:none;text-align:left;padding:2px 0}
+.yrow .dd{font-family:var(--f-display);font-weight:600;font-size:15px;font-variant-numeric:tabular-nums;text-align:right}
+.yrow .dt{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.yrow .tt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.yrow:hover .tt{text-decoration:underline wavy var(--c)}
+
+/* ---------- Modal ---------- */
+.overlay{position:fixed;inset:0;background:rgba(18,20,42,.55);display:grid;place-items:center;padding:20px;z-index:20}
+.modal{max-width:760px;width:100%;max-height:90vh;overflow:auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;padding:28px;position:relative;box-shadow:6px 6px 0 var(--edge)}
+.modal .x{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:2px solid var(--edge);background:var(--paper);font-size:18px;font-weight:700}
+.modal h3{margin:8px 0 12px;font-family:var(--f-punch);font-weight:400;font-size:21px;line-height:1.5}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0;font-size:14.5px}
+.dl dt{color:var(--ink-3);font-weight:700;font-size:13px;padding-top:2px}
+.dl dd{margin:0;font-weight:500}
+.modal p.desc{color:var(--ink-2);font-size:14px;margin:14px 0 0}
+.modal .hand{font-family:var(--f-hand);font-size:15px;color:var(--ink-2)}
+.drop{border:2.5px dashed var(--bleu);background:var(--t-seminar-bg);border-radius:14px;padding:32px 20px;text-align:center;display:grid;gap:4px;justify-items:center;color:var(--ink)}
+.drop .ic{font-family:var(--f-display);font-size:44px;line-height:1;color:var(--bleu);font-weight:600}
+.steps{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:14px;counter-increment:s;align-items:start}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-weight:600;font-size:15px;background:var(--soleil);color:#1A1D33;border:2px solid var(--edge);border-radius:50%;width:28px;height:28px;display:grid;place-items:center}
+.modal.single{grid-template-columns:minmax(0,1fr);max-width:520px}
+
+.subscribe{margin-top:48px;padding:22px 24px;display:grid;gap:10px;background:var(--t-seminar-bg)}
+.subscribe h2{margin:0;font-family:var(--f-punch);font-weight:400;font-size:20px}
+.subscribe p{margin:0;color:var(--ink-2)}
+.sub-row{display:flex;flex-wrap:wrap;gap:10px}
+.btn-sub,.btn-copy{border:2px solid var(--edge);border-radius:999px;padding:8px 18px;font-weight:700;font-size:14px;box-shadow:3px 3px 0 var(--edge);text-decoration:none}
+.btn-sub{background:var(--bleu);color:#fff}
+.btn-copy{background:var(--paper);color:var(--ink)}
+footer{margin-top:40px;text-align:center;display:grid;gap:6px;justify-items:center}
+footer .sig{font-family:var(--f-display);font-weight:600;font-size:24px}
+footer .sig em{color:var(--rouge);font-weight:500}
+footer .small{font-family:var(--f-hand);font-size:15px;color:var(--ink-2)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:860px){.nexts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.nexts .nx.first{grid-column:1/-1}.year{grid-template-columns:repeat(2,minmax(0,1fr))}.mcals,.mcals.y{grid-template-columns:repeat(2,minmax(0,1fr))}.note.n1{display:none}}
+@media (max-width:640px){
+  body{padding-inline:16px}
+  .hero{padding-block:28px 4px}
+  .nexts{grid-template-columns:minmax(0,1fr);gap:20px}
+  .nx{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"date body cd";padding:18px 12px 12px}
+  .nx .countdown{flex-direction:column;align-items:center;padding:4px 10px;border-radius:14px;gap:0;font-size:12px}
+  .nx .datebig{min-width:52px}.nx .datebig .d{font-size:32px}
+  .cell{min-height:56px;padding:4px 2px;align-items:center}
+  .num{font-size:13px;width:24px;height:24px}
+  .cell{align-items:stretch}.cell .num{align-self:center}
+  .pills{gap:2px}
+  .pill{white-space:normal;word-break:break-all;font-size:9.5px;line-height:1.2;padding:2px 2px;text-align:center;border-radius:4px}
+  .pill .pl{display:none}.pill .ps{display:block}
+  .card{grid-template-columns:50px minmax(0,1fr) 68px;grid-template-areas:"date body fly";gap:12px;padding:12px}
+  .card .flyer-img{transform:rotate(2deg)}
+  .card h4{font-size:15px}
+  .card .datebig .d{font-size:28px}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .row .mh{border-right:0;border-bottom:2px solid var(--edge);padding:8px 14px;display:flex;gap:10px;align-items:baseline}
+  .year{grid-template-columns:minmax(0,1fr)}
+  .modal{grid-template-columns:minmax(0,1fr);padding:22px}
+  .modal .flyer{max-width:170px}
+  .modal:not(.zoomed) .flyer-img.big{max-width:200px}
+  .range h3{font-size:26px}
+  .tabs{width:100%}.tab{flex:1;padding:6px 4px}
+  .modes{width:100%}.mode{flex:1}
+  .mcals.q{grid-template-columns:minmax(0,1fr)}
+  .mcals.h,.mcals.y{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .mcals.h .mcal,.mcals.y .mcal{padding:8px}
+  .mcals.h .mday i,.mcals.y .mday i{width:20px;height:20px;font-size:11px}
+  .mcals.h .mw,.mcals.y .mw{font-size:9.5px}
+  .mcal-h b{font-size:19px}
+  .mday.lab{min-height:52px}
+  .mp{white-space:normal;word-break:break-all;font-size:9.5px;line-height:1.2;text-align:center;padding:2px 1px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .view{animation:pop .35s ease}
+  @keyframes pop{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .sticker{animation:wobble 4s ease-in-out infinite}
+  @keyframes wobble{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(-1deg)}}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">北川グループ公式（いちおう）</div>
+    <div class="title-wrap">
+      <h1><span class="p">Purpose</span> <span class="of">of</span> <span class="l">Life</span></h1>
+      <span class="note n1">↙ うちのグループ名やで</span>
+    </div>
+    <div class="sticker">実はこれ、北川グループのグループ名です。<small>……ほぼ誰も呼んでへんけど（笑）</small></div>
+
+    <details class="manifesto box fold">
+      <summary><span class="sum-main">この名前にこめた想い</span><span class="sum-sub">ときどき開いて見てな</span><span class="chev" aria-hidden="true">＋</span></summary>
+      <div class="fold-body">
+      <h2>名前は浸透してへんけど、<mark>中身はガチで大事にしてる</mark>価値観やねん。</h2>
+      <p>ニナファームはあくまで「手段」。ほんまの目的は、一人ひとりの<b>人生の目的</b>を叶えること。</p>
+      <p>しんどい時も、迷った時も、「何のためにニナファームやってるんやっけ？」ってとこに戻ってこれるように、この名前つけてます。</p>
+      <p class="bow">というわけで、みなさん認識よろしくお願いします（ペコリ）</p>
+      </div>
+    </details>
+  </header>
+
+  <section class="sched" aria-labelledby="schedTitle">
+    <div class="sec-head">
+      <h2 id="schedTitle"><small>Le calendrier</small>セミナー・イベントの予定やで</h2>
+      <button class="btn-propose" id="proposeBtn" type="button">＋ イベント教えて！</button>
+    </div>
+    <details class="help box fold">
+      <summary><span class="help-face" aria-hidden="true">🙏</span><span class="sum-main">メガネからのお願い（切実）</span><span class="sum-sub">タップして読んでな</span><span class="chev" aria-hidden="true">＋</span></summary>
+      <div class="help-body fold-body">
+        <p>北川、セミナーの情報を<b>入れ忘れる</b>ことがあります。というか、たぶんあります。</p>
+        <p>「あれ？あのセミナー載ってへんやん」って気づいたら、<b>「＋ イベント教えて！」ボタンからフライヤーをポイッと放り込んでください</b>。事務作業ポンコツな慶太が気づけて、めちゃくちゃ助かります。</p>
+        <p class="hand">お礼は次会った時の全力の「ありがとう」で払います（笑）</p>
+      </div>
+    </details>
+    <p class="sample-note">イベントをタップしたら、フライヤーと詳しい情報が見れるで</p>
+
+    <div class="nexts" id="next"></div>
+
+    <div class="controls">
+      <div class="tabs box" role="tablist" aria-label="表示期間">
+        <button class="tab" role="tab" id="tab-month" data-v="month" aria-selected="true">1ヶ月</button>
+        <button class="tab" role="tab" id="tab-q" data-v="q" aria-selected="false">3ヶ月</button>
+        <button class="tab" role="tab" id="tab-h" data-v="h" aria-selected="false">半年</button>
+        <button class="tab" role="tab" id="tab-y" data-v="y" aria-selected="false">年間</button>
+      </div>
+      <div class="modes box" role="group" aria-label="表示のしかた">
+        <button type="button" class="mode" data-m="list" aria-pressed="true"><span aria-hidden="true">☰</span> リスト</button>
+        <button type="button" class="mode" data-m="cal" aria-pressed="false"><span aria-hidden="true">▦</span> カレンダー</button>
+      </div>
+      <div class="filters" id="filters" aria-label="種類で絞り込み"></div>
+    </div>
+
+    <div class="range">
+      <h3 id="rangeTitle"></h3>
+      <div class="nav">
+        <button type="button" id="prev" aria-label="前へ">‹</button>
+        <button type="button" class="today" id="todayBtn">今日にもどる</button>
+        <button type="button" id="nextBtn" aria-label="次へ">›</button>
+      </div>
+    </div>
+
+    <div id="view" class="view"></div>
+  </section>
+
+  <section class="subscribe box" aria-labelledby="subTitle">
+    <h2 id="subTitle">自分のカレンダーに入れとこ</h2>
+    <p>登録しとくと、ここに載ったセミナーやイベントが <b>自分のGoogleカレンダーに勝手に増えていく</b> で（反映は数時間〜半日くらいかかります）。</p>
+    <div class="sub-row">
+      <a class="btn-sub" href="https://calendar.google.com/calendar/render?cid=webcal://pol-schedule.github.io/cal-bangnv/calendar.ics" target="_blank" rel="noopener">Googleカレンダーに登録</a>
+      <button type="button" class="btn-copy" id="copyIcs">iPhoneなど用のURLをコピー</button>
+    </div>
+    <p class="hand" id="copyMsg" hidden>コピーしたで！カレンダーアプリの「照会カレンダーを追加」に貼ってな</p>
+  </section>
+
+  <footer>
+    <div class="sig">Purpose <em>of</em> Life</div>
+    <div class="small">名前は忘れてもええから、意味だけは覚えといてな（笑）</div>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay" hidden></div>
+
+<script>
+(function(){
+const TYPES={
+  seminar:{label:"セミナー",cls:"ty-seminar"},
+  brief:{label:"説明会",cls:"ty-brief"},
+  study:{label:"勉強会",cls:"ty-study"},
+  event:{label:"イベント",cls:"ty-event"},
+  meet:{label:"ミーティング",cls:"ty-meet"}
+};
+const E=/*EVENTS*/[]/*END*/.map((e,i)=>({...e,id:i}));
+
+const WD=["日","月","火","水","木","金","土"];
+const MON_EN=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const pd=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const today=(()=>{const t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate())})();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let view="month";
+let anchor=new Date(today.getFullYear(),today.getMonth(),1);
+const active=new Set(Object.keys(TYPES));
+try{const v=localStorage.getItem("pol-view");if(v&&["month","q","h","y"].includes(v))view=v}catch(e){}
+let mode="list";
+try{const m=localStorage.getItem("pol-mode");if(m==="cal"||m==="list")mode=m}catch(e){}
+const sn=e=>e.short||e.title;
+
+const $=id=>document.getElementById(id);
+const visible=()=>E.filter(e=>active.has(e.type)).sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start));
+const inMonth=(e,y,m)=>{const d=pd(e.date);return d.getFullYear()===y&&d.getMonth()===m};
+const addM=(d,n)=>new Date(d.getFullYear(),d.getMonth()+n,1);
+const emptyMsg=["この月はまだ何もないで〜","ここ空いてるで！誰か企画して（笑）","予定なし。今のうちに休んどこ"];
+
+const tlabel=e=>e.start+(e.end?"〜"+e.end:"〜");
+function flyer(e,big){if(e.img)return `<img class="flyer-img${big?" big":""}" loading="lazy" src="${e.img}" alt="${esc(e.title)}のフライヤー">`;const d=pd(e.date);return `<div class="flyer ${TYPES[e.type].cls}${big?" big":""}" aria-hidden="true"><div class="ft">Purpose of Life</div><div class="fn">${esc(e.title)}</div><div class="fd">${d.getMonth()+1}.${d.getDate()}</div></div>`}
+function dateBig(e){const d=pd(e.date);return `<div class="datebig"><div class="m">${MON_EN[d.getMonth()].slice(0,4)}.</div><div class="d">${d.getDate()}</div><div class="w">${d.getMonth()+1}月（${WD[d.getDay()]}）</div></div>`}
+function card(e){return `<div class="card box" tabindex="0" role="button" data-id="${e.id}">${dateBig(e)}${flyer(e)}<div class="body"><span class="tag ${TYPES[e.type].cls}">${TYPES[e.type].label}</span><h4>${esc(e.title)}</h4><div class="meta"><span>${tlabel(e)}</span><span>📍${esc(e.place)}</span></div></div></div>`}
+
+function renderFilters(){
+  $("filters").innerHTML=Object.entries(TYPES).map(([k,t])=>`<button type="button" class="chip ${t.cls}" data-t="${k}" aria-pressed="${active.has(k)}">${t.label}</button>`).join("");
+}
+function renderNext(){
+  const ns=visible().filter(e=>pd(e.date)>=today).slice(0,3);
+  const el=$("next");
+  if(!ns.length){el.innerHTML=`<div class="empty">予定されてるイベントはまだないで〜</div>`;return}
+  const stamps=["次はこれ！","その次","さらに次"];
+  el.innerHTML=ns.map((n,i)=>{const days=Math.round((pd(n.date)-today)/864e5);
+    return `<div class="nx box${i===0?" first":""}" tabindex="0" role="button" data-id="${n.id}"><span class="stamp">${stamps[i]}</span>${dateBig(n)}<div class="nx-b"><span class="tag ${TYPES[n.type].cls}">${TYPES[n.type].label}</span><h3>${esc(n.title)}</h3><div class="meta"><span>${tlabel(n)}</span><span>📍${esc(n.place)}</span></div></div><div class="countdown">${days===0?"<b>今日</b>やで！":days===1?"<b>明日</b>やで":`あと<b>${days}</b>日`}</div></div>`}).join("");
+}
+
+function renderMonth(part){
+  const y=anchor.getFullYear(),m=anchor.getMonth();
+  $("rangeTitle").innerHTML=`${MON_EN[m]} <span>${y}年${m+1}月</span>`;
+  const first=new Date(y,m,1);const start=new Date(y,m,1-first.getDay());
+  const evs=visible();
+  let cells="";
+  for(let i=0;i<42;i++){
+    const d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
+    if(i>=35&&d.getMonth()!==m)break;
+    const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+    const de=evs.filter(e=>e.date===key);
+    cells+=`<div class="cell${d.getMonth()!==m?" out":""}${+d===+today?" today":""}"><span class="num">${d.getDate()}</span><div class="pills">${de.map(e=>`<button type="button" class="pill ${TYPES[e.type].cls}" data-id="${e.id}" title="${esc(e.title)}"><span class="pl"><b>${e.start}</b>${esc(e.title)}</span><span class="ps">${esc(sn(e))}</span></button>`).join("")}</div></div>`;
+  }
+  const list=evs.filter(e=>inMonth(e,y,m));
+  const calHtml=`<div class="cal box"><div class="cal-head">${WD.map(w=>`<div>${w}</div>`).join("")}</div><div class="cal-grid">${cells}</div></div>`;
+  if(part==='cal')return calHtml;
+  return `  <div class="month-list">${list.length?list.map(card).join(""):`<div class="empty">${emptyMsg[m%3]}</div>`}</div>`;
+}
+function renderQ(){
+  const months=[0,1,2].map(i=>addM(anchor,i));
+  const a=months[0],b=months[2];
+  $("rangeTitle").innerHTML=`${a.getMonth()+1}月 → ${b.getMonth()+1}月 <span>向こう3ヶ月ぶん</span>`;
+  const evs=visible();
+  return months.map(mm=>{const l=evs.filter(e=>inMonth(e,mm.getFullYear(),mm.getMonth()));
+    return `<div class="month-group"><div class="month-label"><h4>${MON_EN[mm.getMonth()]}</h4><span>${mm.getFullYear()}年${mm.getMonth()+1}月・${l.length}件</span></div>${l.length?l.map(card).join(""):`<div class="empty">${emptyMsg[mm.getMonth()%3]}</div>`}</div>`}).join("");
+}
+function renderH(){
+  const months=[0,1,2,3,4,5].map(i=>addM(anchor,i));
+  const a=months[0],b=months[5];
+  $("rangeTitle").innerHTML=`${a.getMonth()+1}月 → ${b.getMonth()+1}月 <span>半年ぶん、ざっと見る用</span>`;
+  const evs=visible();
+  return `<div class="rows box">${months.map(mm=>{const l=evs.filter(e=>inMonth(e,mm.getFullYear(),mm.getMonth()));
+    return `<div class="row"><div class="mh"><span class="en">${MON_EN[mm.getMonth()]}</span><span class="jp2">${mm.getFullYear()}年${mm.getMonth()+1}月</span></div><div class="evs">${l.length?l.map(e=>{const d=pd(e.date);return `<button type="button" class="mini ${TYPES[e.type].cls}" data-id="${e.id}"><span class="s"><b>${d.getDate()}</b>（${WD[d.getDay()]}）${e.start}・${TYPES[e.type].label}</span><span class="t">${esc(e.title)}</span><span class="s">📍${esc(e.place)}</span></button>`}).join(""):`<div class="empty">予定なし</div>`}</div></div>`}).join("")}</div>`;
+}
+function renderY(){
+  const y=anchor.getFullYear();
+  $("rangeTitle").innerHTML=`${y} <span>${y}年まるごと</span>`;
+  const evs=visible();
+  let h=`<div class="year">`;
+  for(let m=0;m<12;m++){
+    const l=evs.filter(e=>inMonth(e,y,m));
+    const past=new Date(y,m+1,0)<today;
+    const now=y===today.getFullYear()&&m===today.getMonth();
+    h+=`<div class="ybox box${past?" past":""}${now?" now":""}"><div class="yh"><b>${m+1}月</b><span>${now?"いまここ！":l.length+"件"}</span></div>${l.length?l.map(e=>`<button type="button" class="yrow ${TYPES[e.type].cls}" data-id="${e.id}"><span class="dd">${pd(e.date).getDate()}</span><span class="dt"></span><span class="tt">${esc(e.title)}</span></button>`).join(""):`<div class="empty">予定なし</div>`}</div>`;
+  }
+  return h+`</div>`;
+}
+
+function keyOf(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function miniCal(y,m,detail){
+  const evs=visible();
+  const first=new Date(y,m,1),days=new Date(y,m+1,0).getDate();
+  const cnt=evs.filter(e=>inMonth(e,y,m)).length;
+  const now=y===today.getFullYear()&&m===today.getMonth();
+  let h=`<div class="mcal box${now?" now":""}${new Date(y,m+1,0)<today?" past":""}"><div class="mcal-h"><b>${m+1}月</b><span>${MON_EN[m]}${y!==today.getFullYear()&&detail!=="year"?" "+y:""}・${cnt}件</span></div><div class="mgrid">${WD.map((w,i)=>`<span class="mw${i===0?" sun":i===6?" sat":""}">${w}</span>`).join("")}`;
+  for(let i=0;i<first.getDay();i++)h+=`<span class="mday blank"></span>`;
+  for(let d=1;d<=days;d++){
+    const dt=new Date(y,m,d),de=evs.filter(e=>e.date===keyOf(dt));
+    const isT=+dt===+today;
+    if(!de.length){h+=`<span class="mday${detail==="label"?" lab":""}${isT?" today":""}"><i>${d}</i></span>`;continue}
+    const tip=de.map(e=>e.start+" "+e.title).join(" / ");
+    if(detail==="label"){
+      h+=`<button type="button" class="mday lab has${isT?" today":""}" data-day="${keyOf(dt)}" title="${esc(tip)}"><i>${d}</i>${de.map(e=>`<span class="mp ${TYPES[e.type].cls}"><span class="mp-l">${esc(sn(e))}</span></span>`).join("")}</button>`;
+    }else{
+      const c=TYPES[de[0].type].cls;
+      h+=`<button type="button" class="mday dot has ${c}${isT?" today":""}" data-day="${keyOf(dt)}" title="${esc(tip)}" aria-label="${dt.getMonth()+1}月${d}日 ${esc(tip)}"><i>${d}</i>${de.length>1?`<em>${de.length}</em>`:""}</button>`;
+    }
+  }
+  const ml=evs.filter(e=>inMonth(e,y,m));
+  if(ml.length)h+=`</div><div class="mlist">${ml.map(e=>`<button type="button" class="ml ${TYPES[e.type].cls}" data-id="${e.id}"><b>${pd(e.date).getDate()}</b><span class="dt"></span><span class="tt">${esc(detail==="label"?e.title:sn(e))}</span></button>`).join("")}`;
+  else h+=`</div><div class="mlist"><span class="empty" style="font-size:13px">予定なし</span>`;
+  return h+`</div></div>`;
+}
+function renderCal(){
+  if(view==="month")return renderMonth('cal');
+  if(view==="y"){
+    const y=anchor.getFullYear();
+    $("rangeTitle").innerHTML=`${y} <span>${y}年まるごとカレンダー</span>`;
+    return `<div class="mcals y">${[...Array(12)].map((_,m)=>miniCal(y,m,"year")).join("")}</div>`;
+  }
+  const n=view==="q"?3:6;
+  const months=[...Array(n)].map((_,i)=>addM(anchor,i));
+  const a=months[0],b=months[n-1];
+  $("rangeTitle").innerHTML=`${a.getMonth()+1}月 → ${b.getMonth()+1}月 <span>${n===3?"向こう3ヶ月":"半年"}をカレンダーで</span>`;
+  return `<div class="mcals ${n===3?"q":"h"}">${months.map(mm=>miniCal(mm.getFullYear(),mm.getMonth(),n===3?"label":"dot")).join("")}</div>`;
+}
+function openDay(key){
+  const de=visible().filter(e=>e.date===key);
+  if(de.length===1)return openDetail(de[0].id);
+  const d=pd(key);
+  showModal(`<div class="modal box single" role="dialog" aria-modal="true" aria-label="${d.getMonth()+1}月${d.getDate()}日の予定"><button class="x" type="button" data-close aria-label="閉じる">×</button><div><h3>${d.getMonth()+1}月${d.getDate()}日（${WD[d.getDay()]}）は${de.length}件あるで</h3><div class="day-list">${de.map(e=>`<button type="button" class="mini ${TYPES[e.type].cls}" data-id="${e.id}"><span class="s">${tlabel(e)}・${TYPES[e.type].label}</span><span class="t">${esc(e.title)}</span><span class="s">📍${esc(e.place)}</span></button>`).join("")}</div></div></div>`);
+}
+function render(){
+  document.querySelectorAll(".mode").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===mode));
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===view));
+  const v=$("view");
+  v.innerHTML=mode==="cal"?renderCal():{month:()=>renderMonth("list"),q:renderQ,h:renderH,y:renderY}[view]();
+  v.classList.remove("view");void v.offsetWidth;v.classList.add("view");
+  renderNext();
+}
+function step(dir){
+  if(view==="y")anchor=new Date(anchor.getFullYear()+dir,0,1);
+  else anchor=addM(anchor,dir*({month:1,q:3,h:6}[view]));
+  render();
+}
+
+function openDetail(id){
+  const e=E.find(x=>x.id==id);if(!e)return;const d=pd(e.date);
+  const rows=[["いつ",`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${WD[d.getDay()]}）`],
+    ["何時",[e.open&&("開場 "+e.open),"開始 "+e.start,e.end&&("終了 "+e.end)].filter(Boolean).join("　")],
+    ["どこ",esc(e.place)+(e.addr?`<br><span class="sub">${esc(e.addr)}</span>`:"")],
+    ["参加費",esc(e.fee)],["登壇",esc(e.speakers)],["主催",esc(e.host)]].filter(r=>r[1]);
+  showModal(`<div class="modal box" role="dialog" aria-modal="true" aria-label="${esc(e.title)}"><button class="x" type="button" data-close aria-label="閉じる">×</button><div class="fly-col">${flyer(e,true)}${e.img?'<span class="hand zoom-hint">タップで拡大</span>':""}</div><div><span class="tag ${TYPES[e.type].cls}">${TYPES[e.type].label}</span><h3>${esc(e.title)}</h3><dl class="dl">${rows.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl>${e.note?`<p class="desc">${esc(e.note)}</p>`:""}</div></div>`);
+}
+function openPropose(){
+  showModal(`<div class="modal box single" role="dialog" aria-modal="true" aria-label="イベントを教える"><button class="x" type="button" data-close aria-label="閉じる">×</button><div><h3>載ってへんイベント、教えて！</h3><p class="hand" style="margin:-4px 0 14px">ポンコツ慶太の代わりに見つけてくれてありがとう…ほんまに助かる（泣）</p><div class="drop"><div class="ic">＋</div><b>フライヤーの画像をここにポイッ</b><span style="font-size:13px">（タップして写真を選んでもOK）</span></div><ol class="steps"><li>AIがフライヤー読んで、日付・時間・場所を勝手に埋めてくれる</li><li>中身チェックして送ったら「承認待ち」に入るで</li><li>北川がOK出したら、カレンダーに載ります</li></ol><p class="hand" style="margin-top:14px">※ 試作版やから、この画面はまだ見た目だけやで</p></div></div>`);
+}
+let lastFocus=null;
+function showModal(html){lastFocus=document.activeElement;const o=$("overlay");o.innerHTML=html;o.hidden=false;o.querySelector("[data-close]").focus()}
+function closeModal(){const o=$("overlay");o.hidden=true;o.innerHTML="";lastFocus&&lastFocus.focus&&lastFocus.focus()}
+
+document.addEventListener("click",ev=>{
+  const tab=ev.target.closest(".tab");if(tab){view=tab.dataset.v;try{localStorage.setItem("pol-view",view)}catch(e){};anchor=view==="y"?new Date(anchor.getFullYear(),0,1):new Date(today.getFullYear(),today.getMonth(),1);render();return}
+  const md=ev.target.closest(".mode");if(md){mode=md.dataset.m;try{localStorage.setItem("pol-mode",mode)}catch(e){};render();return}
+  const dy=ev.target.closest("[data-day]");if(dy){openDay(dy.dataset.day);return}
+  const chip=ev.target.closest(".chip");if(chip){const t=chip.dataset.t;active.has(t)?active.delete(t):active.add(t);if(!active.size)Object.keys(TYPES).forEach(k=>active.add(k));renderFilters();render();return}
+  const fz=ev.target.closest(".flyer-img.big");if(fz){fz.closest(".modal").classList.toggle("zoomed");return}
+  if(ev.target.closest("[data-close]")||ev.target.id==="overlay"){closeModal();return}
+  const it=ev.target.closest("[data-id]");if(it&&it.dataset.id!==""){openDetail(it.dataset.id);return}
+});
+document.addEventListener("keydown",ev=>{
+  if(ev.key==="Escape"&&!$("overlay").hidden)closeModal();
+  if((ev.key==="Enter"||ev.key===" ")&&ev.target.matches(".card,.nx")&&ev.target.dataset.id){ev.preventDefault();openDetail(ev.target.dataset.id)}
+});
+$("prev").onclick=()=>step(-1);$("nextBtn").onclick=()=>step(1);
+$("todayBtn").onclick=()=>{anchor=view==="y"?new Date(today.getFullYear(),0,1):new Date(today.getFullYear(),today.getMonth(),1);render()};
+$("proposeBtn").onclick=openPropose;
+$("copyIcs").onclick=async()=>{const u="webcal://pol-schedule.github.io/cal-bangnv/calendar.ics";try{await navigator.clipboard.writeText(u)}catch(e){}$("copyMsg").hidden=false};
+if(view==="y")anchor=new Date(anchor.getFullYear(),0,1);
+renderFilters();render();
+})();
+</script>
+
+</body>
+</html>
