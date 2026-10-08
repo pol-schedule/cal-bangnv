@@ -486,6 +486,18 @@ body{background-image:none}
 .q-text{margin:2px 0 0;font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-size:clamp(17px,3.2vw,21px);line-height:1.6;font-weight:600;color:var(--ink);text-wrap:balance;max-width:34em}
 .q-by{margin:0;font-size:12.5px;color:var(--ink-2)}
 .q-next{margin-top:4px;border:0;background:none;font-size:12px;color:var(--ink-3);text-decoration:underline;text-underline-offset:3px;padding:4px 8px}
+
+/* ===== AI質問 ===== */
+.ask{margin-top:20px;padding:20px 22px;border-radius:18px;background:var(--ink);color:var(--paper);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 24px;align-items:center}
+.ask-label{font-family:var(--f-display);font-style:italic;font-size:13px;letter-spacing:.06em;opacity:.75}
+.ask h2{margin:2px 0 6px;font-size:clamp(18px,3vw,21px);font-weight:700;line-height:1.45;color:var(--paper)}
+.ask p{margin:0;font-size:13.5px;line-height:1.75;color:var(--paper);opacity:.88}
+.ask p b{opacity:1}
+.ask .ask-note{margin-top:6px;font-size:12.5px;opacity:.75}
+.ask-btn{justify-self:start;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;white-space:nowrap}
+.ask-btn:hover{opacity:.9}
+.ask-btn:focus-visible{outline:3px solid var(--soleil);outline-offset:3px}
+@media (max-width:640px){.ask{grid-template-columns:minmax(0,1fr);padding:18px 16px;margin-top:16px}.ask-btn{justify-self:stretch;text-align:center}}
 </style>
 </head>
 <body>
@@ -506,6 +518,16 @@ body{background-image:none}
     </div>
     <div class="sticker">実はこれ、北川グループのグループ名です。<small>まだあまり知られていませんが、大切にしている名前です</small></div>
   </header>
+
+  <section class="ask" aria-labelledby="askTitle">
+    <div class="ask-body">
+      <span class="ask-label">AI Q&amp;A</span>
+      <h2 id="askTitle">製品やビジネスのこと、AIに質問できます</h2>
+      <p>ニナファームの製品・成分・ビジネスについて気になることがあれば、こちらのAIに質問してみてください。回答はニナファームの<b>「ニナサーチ」</b>から抜粋した情報をもとにしています。</p>
+      <p class="ask-note">※ ご利用にはGoogleアカウントでのログインが必要です。</p>
+    </div>
+    <a class="ask-btn" href="https://notebooklm.google.com/notebook/9bce4719-bc2d-4809-8c44-f3dd62fcb333" target="_blank" rel="noopener">AIに質問する <span aria-hidden="true">↗</span></a>
+  </section>
 
   <section class="zone z-purpose" aria-labelledby="zA">
     <div class="zone-head">
