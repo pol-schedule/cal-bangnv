@@ -17,12 +17,12 @@ html,body{margin:0}img{max-width:100%}
   --bg:#F5F6F9; --paper:#FFFFFF; --ink:#1F2333; --ink-2:#545A70; --ink-3:#8E93A6;
   --edge:#D9DDE7; --line:#E5E8EF;
   --bleu:#2F4A8A; --rouge:#A9535C; --soleil:#F3E4B3; --menthe:#4A7A68; --hl:#FBF6E7;
-  --t-seminar:#3F5B99; --t-seminar-bg:#E9EDF6;
-  --t-brief:#A0525B; --t-brief-bg:#F6EBEC;
-  --t-event:#86662B; --t-event-bg:#F5EFE0;
-  --t-study:#4A7A68; --t-study-bg:#E7F0EC;
-  --t-meet:#6B5C9C; --t-meet-bg:#EDEAF5;
-  --z-purpose:#F8F2E2; --z-purpose-ink:#86662B; --z-next:#EAEFF8; --z-next-ink:#2F4A8A; --z-list:#FFFFFF; --z-list-ink:#4A7A68; --z-info:#EEEFF3; --z-info-ink:#545A70;
+  --t-seminar:#2D62C6; --t-seminar-bg:#E3ECFB;
+  --t-brief:#D0463F; --t-brief-bg:#FCE6E4;
+  --t-event:#D9821A; --t-event-bg:#FDF0DD;
+  --t-study:#1F9466; --t-study-bg:#DFF3EA;
+  --t-meet:#7B53C4; --t-meet-bg:#EFE7FB;
+  --on-c:#FFFFFF; --z-purpose:#F8F2E2; --z-purpose-ink:#86662B; --z-next:#EAEFF8; --z-next-ink:#2F4A8A; --z-list:#FFFFFF; --z-list-ink:#4A7A68; --z-info:#EEEFF3; --z-info-ink:#545A70;
   --f-display:"Fraunces","Georgia",serif;
   --f-punch:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
   --f-hand:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
@@ -32,23 +32,23 @@ html,body{margin:0}img{max-width:100%}
   --bg:#14161F; --paper:#1C1F2B; --ink:#ECEEF4; --ink-2:#B3B8C9; --ink-3:#7F8599;
   --edge:#2F3447; --line:#2A2E3E;
   --bleu:#9CB0E6; --rouge:#D8969D; --soleil:#4A4128; --menthe:#9CC7B6; --hl:#24231E;
-  --t-seminar:#A9B9E3; --t-seminar-bg:#232A40;
-  --t-brief:#DBA2A8; --t-brief-bg:#38262B;
-  --t-event:#D8C08F; --t-event-bg:#332C1E;
-  --t-study:#9CC7B6; --t-study-bg:#1F3029;
-  --t-meet:#BDB1E2; --t-meet-bg:#2A2640;
-  --z-purpose:#211F19; --z-purpose-ink:#D8C08F; --z-next:#181E2E; --z-next-ink:#9CB0E6; --z-list:#191C26; --z-list-ink:#9CC7B6; --z-info:#17191F; --z-info-ink:#B3B8C9;
+  --t-seminar:#7EA5F2; --t-seminar-bg:#1E2B47;
+  --t-brief:#F08C86; --t-brief-bg:#40211F;
+  --t-event:#F2B260; --t-event-bg:#3D2C14;
+  --t-study:#5FCB9E; --t-study-bg:#14352A;
+  --t-meet:#B697F2; --t-meet-bg:#2D2348;
+  --on-c:#14161F; --z-purpose:#211F19; --z-purpose-ink:#D8C08F; --z-next:#181E2E; --z-next-ink:#9CB0E6; --z-list:#191C26; --z-list-ink:#9CC7B6; --z-info:#17191F; --z-info-ink:#B3B8C9;
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#14161F; --paper:#1C1F2B; --ink:#ECEEF4; --ink-2:#B3B8C9; --ink-3:#7F8599;
   --edge:#2F3447; --line:#2A2E3E;
   --bleu:#9CB0E6; --rouge:#D8969D; --soleil:#4A4128; --menthe:#9CC7B6; --hl:#24231E;
-  --t-seminar:#A9B9E3; --t-seminar-bg:#232A40;
-  --t-brief:#DBA2A8; --t-brief-bg:#38262B;
-  --t-event:#D8C08F; --t-event-bg:#332C1E;
-  --t-study:#9CC7B6; --t-study-bg:#1F3029;
-  --t-meet:#BDB1E2; --t-meet-bg:#2A2640;
-  --z-purpose:#211F19; --z-purpose-ink:#D8C08F; --z-next:#181E2E; --z-next-ink:#9CB0E6; --z-list:#191C26; --z-list-ink:#9CC7B6; --z-info:#17191F; --z-info-ink:#B3B8C9;
+  --t-seminar:#7EA5F2; --t-seminar-bg:#1E2B47;
+  --t-brief:#F08C86; --t-brief-bg:#40211F;
+  --t-event:#F2B260; --t-event-bg:#3D2C14;
+  --t-study:#5FCB9E; --t-study-bg:#14352A;
+  --t-meet:#B697F2; --t-meet-bg:#2D2348;
+  --on-c:#14161F; --z-purpose:#211F19; --z-purpose-ink:#D8C08F; --z-next:#181E2E; --z-next-ink:#9CB0E6; --z-list:#191C26; --z-list-ink:#9CC7B6; --z-info:#17191F; --z-info-ink:#B3B8C9;
   color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -462,6 +462,22 @@ body{background-image:none}
   .card .meta{flex-direction:column;gap:0;align-items:flex-start}
   .card .meta span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 }
+
+/* ===== カテゴリーの色分け（はっきり） ===== */
+.tag{background:var(--c);color:var(--on-c);border-color:var(--c);font-weight:700}
+.chip{border-width:1.5px}
+.chip[aria-pressed="true"]{background:var(--c);color:var(--on-c);border-color:var(--c)}
+.chip[aria-pressed="false"]{background:transparent;color:var(--c);opacity:.6}
+.pill,.mp{background:var(--c);color:var(--on-c)}
+.mini{border-left:0;background:var(--cb);border-color:transparent}
+.mini .s b{color:var(--c)}
+.card .datebig,.nx .datebig{background:var(--cb);border-radius:10px;padding:8px 4px;align-self:stretch;align-content:center}
+.card .datebig .m,.card .datebig .d,.nx .datebig .m,.nx .datebig .d{color:var(--c)}
+.card .datebig .w,.nx .datebig .w{color:var(--c);opacity:.85}
+.flyer{background:var(--cb);color:var(--c);border-color:var(--c)}
+.yrow .dt,.ml .dt{width:10px;height:10px}
+.mday.dot.has i{background:var(--c);color:var(--on-c);outline:0}
+.cal .pill{font-weight:700}
 </style>
 </head>
 <body>
@@ -605,7 +621,7 @@ const emptyMsg=["この月の予定はまだありません","この月の予定
 const tlabel=e=>e.start+(e.end?"〜"+e.end:"〜");
 function flyer(e,big){if(e.img)return `<img class="flyer-img${big?" big":""}" loading="lazy" src="${e.img}" alt="${esc(e.title)}のフライヤー">`;const d=pd(e.date);return `<div class="flyer ${TYPES[e.type].cls}${big?" big":""}" aria-hidden="true"><div class="ft">Purpose of Life</div><div class="fn">${esc(e.title)}</div><div class="fd">${d.getMonth()+1}.${d.getDate()}</div></div>`}
 function dateBig(e){const d=pd(e.date);return `<div class="datebig"><div class="m">${MON_EN[d.getMonth()].slice(0,4)}.</div><div class="d">${d.getDate()}</div><div class="w">${d.getMonth()+1}月（${WD[d.getDay()]}）</div></div>`}
-function card(e){return `<div class="card box" tabindex="0" role="button" data-id="${e.id}">${dateBig(e)}${flyer(e)}<div class="body"><span class="tag ${TYPES[e.type].cls}">${TYPES[e.type].label}</span><h4>${esc(e.title)}</h4><div class="meta"><span>${tlabel(e)}</span><span>📍${esc(e.place)}</span></div></div></div>`}
+function card(e){return `<div class="card box ${TYPES[e.type].cls}" tabindex="0" role="button" data-id="${e.id}">${dateBig(e)}${flyer(e)}<div class="body"><span class="tag ${TYPES[e.type].cls}">${TYPES[e.type].label}</span><h4>${esc(e.title)}</h4><div class="meta"><span>${tlabel(e)}</span><span>📍${esc(e.place)}</span></div></div></div>`}
 
 function renderFilters(){
   $("filters").innerHTML=Object.entries(TYPES).map(([k,t])=>`<button type="button" class="chip ${t.cls}" data-t="${k}" aria-pressed="${active.has(k)}">${t.label}</button>`).join("");
@@ -616,7 +632,7 @@ function renderNext(){
   if(!ns.length){el.innerHTML=`<div class="empty">予定されているイベントはまだありません</div>`;return}
   const stamps=["次回","その次","さらに次"];
   el.innerHTML=ns.map((n,i)=>{const days=Math.round((pd(n.date)-today)/864e5);
-    return `<div class="nx box${i===0?" first":""}" tabindex="0" role="button" data-id="${n.id}"><span class="stamp">${stamps[i]}</span>${dateBig(n)}<div class="nx-b"><span class="tag ${TYPES[n.type].cls}">${TYPES[n.type].label}</span><h3>${esc(n.title)}</h3><div class="meta"><span>${tlabel(n)}</span><span>📍${esc(n.place)}</span></div></div><div class="countdown">${days===0?"<b>本日</b>":days===1?"<b>明日</b>":`あと<b>${days}</b>日`}</div></div>`}).join("");
+    return `<div class="nx box ${TYPES[n.type].cls}${i===0?" first":""}" tabindex="0" role="button" data-id="${n.id}"><span class="stamp">${stamps[i]}</span>${dateBig(n)}<div class="nx-b"><span class="tag ${TYPES[n.type].cls}">${TYPES[n.type].label}</span><h3>${esc(n.title)}</h3><div class="meta"><span>${tlabel(n)}</span><span>📍${esc(n.place)}</span></div></div><div class="countdown">${days===0?"<b>本日</b>":days===1?"<b>明日</b>":`あと<b>${days}</b>日`}</div></div>`}).join("");
 }
 
 function renderMonth(part){
