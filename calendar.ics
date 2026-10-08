@@ -9,7 +9,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:83923d889158be63@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20261012T043000Z
 DTEND:20261012T073000Z
 SUMMARY:新規事業説明会「未来の自分に自信を持つため
@@ -23,7 +23,7 @@ DESCRIPTION:開場 13:00\n開始 13:30／終了 16:30\n参加費：会員
 END:VEVENT
 BEGIN:VEVENT
 UID:cb9537fe94d7142f@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20261015T110000Z
 DTEND:20261015T120000Z
 SUMMARY:Bトレ!!「Bさんのお仕事、大切な事」
@@ -31,11 +31,12 @@ LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：安田由佳理PM\n主
  催：森田良子\n対象：ビジネスメンバー。名前出し必
  須、録画・録音・スクショ禁止。Zoomの入室情報はフ
- ライヤーを見てな\nhttps://pol-schedule.github.io/cal-bangnv/
+ ライヤーをご確認ください。\nhttps://pol-schedule.github.io/
+ cal-bangnv/
 END:VEVENT
 BEGIN:VEVENT
 UID:3f257b4fdf10ccf9@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20261018T043000Z
 DTEND:20261018T063000Z
 SUMMARY:新規事業説明会＆ビジネストレーニング（神戸
@@ -49,7 +50,7 @@ DESCRIPTION:開場 13:15\n開始 13:30（終了時刻未定）\n参加費
 END:VEVENT
 BEGIN:VEVENT
 UID:8b2ab707064cb099@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20261025T040000Z
 DTEND:20261025T060000Z
 SUMMARY:Ladies Festival 12th「unbound」
@@ -57,164 +58,176 @@ LOCATION:北九州市小倉北区浅野3丁目8-1
 DESCRIPTION:開場 12:00\n開始 13:00（終了時刻未定）\n参加費
  ：前売券 1\,500円\n登壇：Special Guest：YUKIKO OKADA RDM／YUKI
  NO SASAKI DM／KUMIKO AKIZUKI GM／SHOKO KOJIMA EM ほか\n主催：IMAZ
- AWA Group\n男女問わず参加OK。車の人は近くの駐車場を
- 使ってな\nhttps://pol-schedule.github.io/cal-bangnv/
+ AWA Group\n男女問わずご参加いただけます。お車の方は
+ 近隣の駐車場をご利用ください。\nhttps://pol-schedule.gith
+ ub.io/cal-bangnv/
 END:VEVENT
 BEGIN:VEVENT
 UID:ff9dddfb1f514e9d@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20261025T093000Z
 DTEND:20261025T113000Z
 SUMMARY:それイケ男塾「今の自分を超えていけ。」
 LOCATION:鉄板焼き鳥と博多もつ鍋 たぶ 小倉駅前店
 DESCRIPTION:開場 18:00\n開始 18:30（終了時刻未定）\n参加費
- ：会費 4\,000円\n女性もOK！\nhttps://pol-schedule.github.io/cal-
- bangnv/
+ ：会費 4\,000円\n女性の方もご参加いただけます。\nhttp
+ s://pol-schedule.github.io/cal-bangnv/
 END:VEVENT
 BEGIN:VEVENT
 UID:127d3e5a557e401e@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20261101T110000Z
 DTEND:20261101T120000Z
 SUMMARY:11月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\n今月は11/1
- 開催。ビジネスメンバー限定。Zoom ミーティングID：27
- 0 121 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-
- bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\n今
+ 月は11/1の開催です。ビジネスメンバー限定です。Zoom 
+ ミーティングID：270 121 0121／パスコード：1127\nhttps://po
+ l-schedule.github.io/cal-bangnv/
 END:VEVENT
 BEGIN:VEVENT
 UID:5944c85050ab45ea@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20261202T110000Z
 DTEND:20261202T120000Z
 SUMMARY:12月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:e8bfa37733a2bd6e@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270104T110000Z
 DTEND:20270104T120000Z
 SUMMARY:1月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\n年始のた
- め日程が変わるかも（いまは1/4で仮置き）。ビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\n年
+ 始のため、日程が変更になる可能性があります（現在
+ は1/4で仮置き）。ビジネスメンバー限定です。Zoom ミ
+ ーティングID：270 121 0121／パスコード：1127\nhttps://pol-s
+ chedule.github.io/cal-bangnv/
 END:VEVENT
 BEGIN:VEVENT
 UID:bcb3b5e92b96cb48@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270202T110000Z
 DTEND:20270202T120000Z
 SUMMARY:2月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:1750c1d136fd21e0@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270302T110000Z
 DTEND:20270302T120000Z
 SUMMARY:3月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:eb6e37078d59ece4@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270402T110000Z
 DTEND:20270402T120000Z
 SUMMARY:4月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:9b8a19e4eddab5aa@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270502T110000Z
 DTEND:20270502T120000Z
 SUMMARY:5月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:fd5111dcb994ea03@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270602T110000Z
 DTEND:20270602T120000Z
 SUMMARY:6月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:26c36e1ee066277f@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270702T110000Z
 DTEND:20270702T120000Z
 SUMMARY:7月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:63bed4a24c0cae32@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270802T110000Z
 DTEND:20270802T120000Z
 SUMMARY:8月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:165ce0caba63d7ed@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20270902T110000Z
 DTEND:20270902T120000Z
 SUMMARY:9月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 BEGIN:VEVENT
 UID:cc59360877b14e0f@pol-schedule
-DTSTAMP:20261008T075225Z
+DTSTAMP:20261008T075436Z
 DTSTART:20271002T110000Z
 DTEND:20271002T120000Z
 SUMMARY:10月度 祥子グループ 月初ミーティング
 LOCATION:オンライン（Zoom）
 DESCRIPTION:開始 20:00／終了 21:00\n登壇：スペシャルゲス
- ト：決まり次第更新\n主催：祥子グループ\nビジネス
- メンバー限定。Zoom ミーティングID：270 121 0121／パス
- コード：1127\nhttps://pol-schedule.github.io/cal-bangnv/
+ ト：決まり次第掲載します\n主催：祥子グループ\nビ
+ ジネスメンバー限定です。Zoom ミーティングID：270 121 
+ 0121／パスコード：1127\nhttps://pol-schedule.github.io/cal-bangnv
+ /
 END:VEVENT
 END:VCALENDAR
