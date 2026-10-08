@@ -478,6 +478,7 @@ body{background-image:none}
 .yrow .dt,.ml .dt{width:10px;height:10px}
 .mday.dot.has i{background:var(--c);color:var(--on-c);outline:0}
 .cal .pill{font-weight:700}
+.line-ask{background:var(--bg);border-radius:10px;padding:10px 14px;color:var(--ink)!important}
 </style>
 </head>
 <body>
@@ -558,7 +559,7 @@ body{background-image:none}
     <div class="zone-head">
       <span class="zone-label">Information</span>
       <h2 id="zD">ご案内</h2>
-      <p>カレンダー登録と、情報提供のお願いです。</p>
+      <p>カレンダー登録と、掲載に関するお願いです。</p>
     </div>
     <div class="info-grid">
       <div class="subscribe box">
@@ -572,8 +573,8 @@ body{background-image:none}
       </div>
       <div class="subscribe box">
         <h3>掲載に関するお願い</h3>
-        <p>日程の掲載は北川が行っておりますが、<b>情報の掲載漏れ</b>があるかもしれません。掲載されていないセミナーやイベントにお気づきの際は、フライヤーをお送りいただけますと大変助かります。</p>
-        <div class="sub-row"><button class="btn-propose" id="proposeBtn" type="button">＋ イベント情報を送る</button></div>
+        <p>日程の掲載は北川が行っておりますが、<b>情報の掲載漏れ</b>があるかもしれません。</p>
+        <p class="line-ask">掲載されていないセミナーやイベントにお気づきの際は、<b>北川まで直接LINEでフライヤーをお送りください。</b></p>
         <p class="hand">いつもご協力いただき、ありがとうございます。</p>
       </div>
     </div>
@@ -772,7 +773,6 @@ document.addEventListener("keydown",ev=>{
 });
 $("prev").onclick=()=>step(-1);$("nextBtn").onclick=()=>step(1);
 $("todayBtn").onclick=()=>{anchor=new Date(today.getFullYear(),today.getMonth(),1);render()};
-$("proposeBtn").onclick=openPropose;
 $("copyIcs").onclick=async()=>{const u="webcal://pol-schedule.github.io/cal-bangnv/calendar.ics";try{await navigator.clipboard.writeText(u)}catch(e){}$("copyMsg").hidden=false};
 renderFilters();render();
 })();
