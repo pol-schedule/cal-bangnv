@@ -8,44 +8,44 @@
 <title>Purpose of Life Schedule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,600,100,1;1,9..144,500,100,1;1,9..144,700,100,1&family=Dela+Gothic+One&family=Yomogi&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
 <style>
 html,body{margin:0}img{max-width:100%}
 
 /* Layout: パリのカフェの黒板×ステッカー帳。太い線と少し傾いたシールで遊び心、色はトリコロールをポップに。 */
 :root{
-  --bg:#F1F3FB; --paper:#FFFFFF; --ink:#1A1D33; --ink-2:#4B5072; --ink-3:#8B90AD;
-  --edge:#1A1D33; --line:#D7DBEC;
-  --bleu:#2B48E8; --rouge:#E8473B; --soleil:#FFC83D; --menthe:#1F9D7A;
-  --t-seminar:#2B48E8; --t-seminar-bg:#DFE5FF;
-  --t-brief:#D93A2F; --t-brief-bg:#FFE2DE;
-  --t-event:#8A5D00; --t-event-bg:#FFF0C4;
-  --t-study:#167A5E; --t-study-bg:#D5F2E8;
-  --t-meet:#7338C2; --t-meet-bg:#EEE2FC;
+  --bg:#F5F6F9; --paper:#FFFFFF; --ink:#1F2333; --ink-2:#545A70; --ink-3:#8E93A6;
+  --edge:#D9DDE7; --line:#E5E8EF;
+  --bleu:#2F4A8A; --rouge:#A9535C; --soleil:#F3E4B3; --menthe:#4A7A68; --hl:#FBF6E7;
+  --t-seminar:#3F5B99; --t-seminar-bg:#E9EDF6;
+  --t-brief:#A0525B; --t-brief-bg:#F6EBEC;
+  --t-event:#86662B; --t-event-bg:#F5EFE0;
+  --t-study:#4A7A68; --t-study-bg:#E7F0EC;
+  --t-meet:#6B5C9C; --t-meet-bg:#EDEAF5;
   --f-display:"Fraunces","Georgia",serif;
-  --f-punch:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
-  --f-hand:"Yomogi","Klee One","Hiragino Maru Gothic ProN",cursive;
+  --f-punch:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  --f-hand:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
   --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#12142A; --paper:#1D2042; --ink:#F1F2FA; --ink-2:#BFC3DE; --ink-3:#8086A8;
-  --edge:#8A93E0; --line:#2E3260;
-  --bleu:#8FA2FF; --rouge:#FF8A7E; --soleil:#FFD466; --menthe:#5FD3AF;
-  --t-seminar:#AEBBFF; --t-seminar-bg:#262E66;
-  --t-brief:#FF9F94; --t-brief-bg:#4A2430;
-  --t-event:#FFD979; --t-event-bg:#463A1A;
-  --t-study:#7FE0C1; --t-study-bg:#173F38;
-  --t-meet:#CDAEFF; --t-meet-bg:#34245A;
+  --bg:#14161F; --paper:#1C1F2B; --ink:#ECEEF4; --ink-2:#B3B8C9; --ink-3:#7F8599;
+  --edge:#2F3447; --line:#2A2E3E;
+  --bleu:#9CB0E6; --rouge:#D8969D; --soleil:#4A4128; --menthe:#9CC7B6; --hl:#24231E;
+  --t-seminar:#A9B9E3; --t-seminar-bg:#232A40;
+  --t-brief:#DBA2A8; --t-brief-bg:#38262B;
+  --t-event:#D8C08F; --t-event-bg:#332C1E;
+  --t-study:#9CC7B6; --t-study-bg:#1F3029;
+  --t-meet:#BDB1E2; --t-meet-bg:#2A2640;
   color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#12142A; --paper:#1D2042; --ink:#F1F2FA; --ink-2:#BFC3DE; --ink-3:#8086A8;
-  --edge:#8A93E0; --line:#2E3260;
-  --bleu:#8FA2FF; --rouge:#FF8A7E; --soleil:#FFD466; --menthe:#5FD3AF;
-  --t-seminar:#AEBBFF; --t-seminar-bg:#262E66;
-  --t-brief:#FF9F94; --t-brief-bg:#4A2430;
-  --t-event:#FFD979; --t-event-bg:#463A1A;
-  --t-study:#7FE0C1; --t-study-bg:#173F38;
-  --t-meet:#CDAEFF; --t-meet-bg:#34245A;
+  --bg:#14161F; --paper:#1C1F2B; --ink:#ECEEF4; --ink-2:#B3B8C9; --ink-3:#7F8599;
+  --edge:#2F3447; --line:#2A2E3E;
+  --bleu:#9CB0E6; --rouge:#D8969D; --soleil:#4A4128; --menthe:#9CC7B6; --hl:#24231E;
+  --t-seminar:#A9B9E3; --t-seminar-bg:#232A40;
+  --t-brief:#DBA2A8; --t-brief-bg:#38262B;
+  --t-event:#D8C08F; --t-event-bg:#332C1E;
+  --t-study:#9CC7B6; --t-study-bg:#1F3029;
+  --t-meet:#BDB1E2; --t-meet-bg:#2A2640;
   color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -332,6 +332,56 @@ footer .small{font-family:var(--f-hand);font-size:15px;color:var(--ink-2)}
   .sticker{animation:wobble 4s ease-in-out infinite}
   @keyframes wobble{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(-1deg)}}
 }
+
+/* ===== 落ち着かせ調整 ===== */
+body{background-image:none}
+.box{border:1px solid var(--edge);border-radius:12px;box-shadow:0 1px 2px rgba(20,25,45,.05),0 6px 18px rgba(20,25,45,.05)}
+.card:hover,.nx:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,25,45,.06),0 10px 24px rgba(20,25,45,.08)}
+.sticker,.flyer,.flyer-img,.countdown,.ybox,.ybox:nth-child(odd),.ybox:nth-child(even),.nx .stamp,.help,.note.n1,.mini:hover,.flyer-img.big,.card .flyer-img,.hero h1 .l::after{transform:none}
+.hero h1{font-variation-settings:normal;font-weight:500}
+.sticker,.manifesto h2,.sec-head h2,.nx h3,.card h4,.modal h3,.fold .sum-main,.subscribe h2,.nx .stamp,.flyer .fn,.help-title{font-weight:700}
+.sticker{background:var(--hl);color:var(--ink);border:1px solid var(--edge);box-shadow:none;animation:none;font-size:15px}
+.sticker small{font-size:13px;color:var(--ink-2)}
+.eyebrow{border:1px solid var(--edge);font-size:13px}
+.note{font-size:13px;color:var(--ink-3)}
+.manifesto h2{font-size:clamp(17px,3vw,20px)}
+.manifesto .bow{font-size:15px}
+.sec-head h2{font-size:clamp(20px,3.6vw,26px)}
+.btn-propose{background:var(--ink);color:var(--paper);border:1px solid var(--ink);box-shadow:none}
+.btn-propose:hover,.btn-propose:active{transform:none;box-shadow:none;opacity:.88}
+.nav button{border:1px solid var(--edge);box-shadow:none}
+.nav button:active{transform:none}
+.chip,.tag,.mini{border-width:1px}
+.mini{background:var(--paper);border-color:var(--edge)}
+.mini .t{font-weight:500}
+.cal-head div{border-bottom:1px solid var(--edge)}
+.row .mh{border-right:1px solid var(--edge)}
+.cell.today .num,.mday.today i{background:var(--soleil);color:var(--ink);border:0;outline:0}
+.nx .stamp{background:var(--ink);color:var(--paper);border:0;font-size:12px}
+.nx.first{background:var(--hl)}
+.countdown{border:1px solid var(--edge);background:var(--paper)}
+.countdown b{color:var(--ink)}
+.nx.first .countdown{background:var(--soleil);color:var(--ink);border-color:transparent}
+.nx.first .countdown b{color:var(--ink)}
+.help{background:var(--paper);border-style:solid}
+.help .sum-main{color:var(--ink)}
+.help .fold-body{border-top-color:var(--line)}
+.fold .chev{border:1px solid var(--edge);background:var(--bg);color:var(--ink)}
+.steps li::before{background:var(--soleil);color:var(--ink);border:0}
+.drop{border-width:1.5px;border-color:var(--ink-3);background:var(--bg)}
+.drop .ic{color:var(--ink-2)}
+.mcal.now,.ybox.now{background:var(--hl)}
+.mode[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.subscribe{background:var(--paper)}
+.btn-sub,.btn-copy{border:1px solid var(--ink);box-shadow:none}
+.btn-sub{background:var(--ink);color:var(--paper)}
+.flyer{border-width:1px}
+.flyer-img{border:1px solid var(--edge)}
+.flyer-img.big{box-shadow:none}
+.modal{box-shadow:0 20px 50px rgba(10,14,30,.25)}
+.mday.dot.has i{outline-width:1.5px}
+.mday.dot em{background:var(--ink);color:var(--paper)}
+.yrow:hover .tt,.ml:hover .tt{text-decoration:underline}
 </style>
 </head>
 <body>
