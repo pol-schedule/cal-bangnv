@@ -22,6 +22,7 @@ html,body{margin:0}img{max-width:100%}
   --t-event:#86662B; --t-event-bg:#F5EFE0;
   --t-study:#4A7A68; --t-study-bg:#E7F0EC;
   --t-meet:#6B5C9C; --t-meet-bg:#EDEAF5;
+  --z-purpose:#F8F2E2; --z-purpose-ink:#86662B; --z-next:#EAEFF8; --z-next-ink:#2F4A8A; --z-list:#FFFFFF; --z-list-ink:#4A7A68; --z-info:#EEEFF3; --z-info-ink:#545A70;
   --f-display:"Fraunces","Georgia",serif;
   --f-punch:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
   --f-hand:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
@@ -36,6 +37,7 @@ html,body{margin:0}img{max-width:100%}
   --t-event:#D8C08F; --t-event-bg:#332C1E;
   --t-study:#9CC7B6; --t-study-bg:#1F3029;
   --t-meet:#BDB1E2; --t-meet-bg:#2A2640;
+  --z-purpose:#211F19; --z-purpose-ink:#D8C08F; --z-next:#181E2E; --z-next-ink:#9CB0E6; --z-list:#191C26; --z-list-ink:#9CC7B6; --z-info:#17191F; --z-info-ink:#B3B8C9;
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#14161F; --paper:#1C1F2B; --ink:#ECEEF4; --ink-2:#B3B8C9; --ink-3:#7F8599;
@@ -46,6 +48,7 @@ html,body{margin:0}img{max-width:100%}
   --t-event:#D8C08F; --t-event-bg:#332C1E;
   --t-study:#9CC7B6; --t-study-bg:#1F3029;
   --t-meet:#BDB1E2; --t-meet-bg:#2A2640;
+  --z-purpose:#211F19; --z-purpose-ink:#D8C08F; --z-next:#181E2E; --z-next-ink:#9CB0E6; --z-list:#191C26; --z-list-ink:#9CC7B6; --z-info:#17191F; --z-info-ink:#B3B8C9;
   color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -382,6 +385,33 @@ body{background-image:none}
 .mday.dot.has i{outline-width:1.5px}
 .mday.dot em{background:var(--ink);color:var(--paper)}
 .yrow:hover .tt,.ml:hover .tt{text-decoration:underline}
+
+/* ===== ゾーン（エリアごとの色分け） ===== */
+.zone{margin-top:28px;padding:24px 22px 26px;border-radius:18px;background:var(--zb);display:grid;gap:18px;border:1px solid var(--edge)}
+.z-purpose{--zb:var(--z-purpose);--zi:var(--z-purpose-ink)}
+.z-next{--zb:var(--z-next);--zi:var(--z-next-ink)}
+.z-list{--zb:var(--z-list);--zi:var(--z-list-ink)}
+.z-info{--zb:var(--z-info);--zi:var(--z-info-ink)}
+.zone-head{display:grid;gap:4px;padding-bottom:12px;border-bottom:1px solid var(--edge)}
+.zone-label{justify-self:start;font-family:var(--f-display);font-style:italic;font-size:13px;letter-spacing:.06em;color:var(--zi);display:flex;align-items:center;gap:8px}
+.zone-label::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--zi)}
+.zone-head h2{margin:0;font-size:clamp(20px,3.4vw,24px);font-weight:700;line-height:1.4;color:var(--ink)}
+.zone-head p{margin:0;font-size:13.5px;color:var(--ink-2);max-width:42em}
+.z-purpose .manifesto{margin-top:0;max-width:none}
+.sched{padding-top:0}
+.nexts{padding-top:12px}
+.controls{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:14px 24px;align-items:end}
+.ctl{display:grid;gap:6px;min-width:0}
+.ctl-l{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:.04em}
+.ctl-l small{font-weight:500;margin-left:8px}
+.z-list .zone-head{border-bottom-color:var(--line)}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.info-grid .subscribe{margin:0;background:var(--paper)}
+.subscribe h3{margin:0;font-size:16.5px;font-weight:700}
+.subscribe .sub-row{margin-top:2px}
+.hero{padding-block:36px 4px}
+@media (max-width:860px){.controls{grid-template-columns:minmax(0,1fr)}.info-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.zone{padding:18px 14px 20px;border-radius:14px;margin-top:20px}.ctl .tabs,.ctl .modes{width:100%}}
 </style>
 </head>
 <body>
@@ -394,7 +424,14 @@ body{background-image:none}
       <span class="note n1">↙ 私たちのグループ名です</span>
     </div>
     <div class="sticker">実はこれ、北川グループのグループ名です。<small>まだあまり知られていませんが、大切にしている名前です</small></div>
+  </header>
 
+  <section class="zone z-purpose" aria-labelledby="zA">
+    <div class="zone-head">
+      <span class="zone-label">Our Purpose</span>
+      <h2 id="zA">私たちの想い</h2>
+      <p>グループ名「Purpose of Life」に込めた意味をまとめています。</p>
+    </div>
     <details class="manifesto box fold">
       <summary><span class="sum-main">この名前にこめた想い</span><span class="sum-sub">ときどき開いてご覧ください</span><span class="chev" aria-hidden="true">＋</span></summary>
       <div class="fold-body">
@@ -404,37 +441,39 @@ body{background-image:none}
       <p class="bow">皆さまにも、この想いを共有していただけましたら幸いです。</p>
       </div>
     </details>
-  </header>
+  </section>
 
-  <section class="sched" aria-labelledby="schedTitle">
-    <div class="sec-head">
-      <h2 id="schedTitle"><small>Le calendrier</small>セミナー・イベント日程</h2>
-      <button class="btn-propose" id="proposeBtn" type="button">＋ イベント情報を送る</button>
+  <section class="zone z-next" aria-labelledby="zB">
+    <div class="zone-head">
+      <span class="zone-label">Up Next</span>
+      <h2 id="zB">直近の予定</h2>
+      <p>これから開催されるセミナー・イベントを、日付の近い順に3件ご案内しています。</p>
     </div>
-    <details class="help box fold">
-      <summary><span class="help-face" aria-hidden="true">🙏</span><span class="sum-main">掲載に関するお願い</span><span class="sum-sub">タップしてご覧ください</span><span class="chev" aria-hidden="true">＋</span></summary>
-      <div class="help-body fold-body">
-        <p>日程の掲載は北川が行っておりますが、<b>情報の掲載漏れ</b>があるかもしれません。</p>
-        <p>掲載されていないセミナーやイベントにお気づきの際は、<b>「＋ イベント情報を送る」ボタンからフライヤーをお送りいただけますと</b>大変助かります。</p>
-        <p class="hand">いつもご協力いただき、ありがとうございます。</p>
-      </div>
-    </details>
-    <p class="sample-note">イベントをタップすると、フライヤーと詳細をご覧いただけます</p>
-
     <div class="nexts" id="next"></div>
+  </section>
+
+  <section class="zone z-list sched" aria-labelledby="zC">
+    <div class="zone-head">
+      <span class="zone-label">Schedule</span>
+      <h2 id="zC">日程一覧</h2>
+      <p>期間（1ヶ月・3ヶ月・半年・年間）と、表示方法（リスト・カレンダー）を切り替えてご覧いただけます。イベントをタップすると、フライヤーと詳細が表示されます。</p>
+    </div>
 
     <div class="controls">
+      <div class="ctl"><span class="ctl-l">期間</span>
       <div class="tabs box" role="tablist" aria-label="表示期間">
         <button class="tab" role="tab" id="tab-month" data-v="month" aria-selected="true">1ヶ月</button>
         <button class="tab" role="tab" id="tab-q" data-v="q" aria-selected="false">3ヶ月</button>
         <button class="tab" role="tab" id="tab-h" data-v="h" aria-selected="false">半年</button>
         <button class="tab" role="tab" id="tab-y" data-v="y" aria-selected="false">年間</button>
-      </div>
+      </div></div>
+      <div class="ctl"><span class="ctl-l">表示</span>
       <div class="modes box" role="group" aria-label="表示のしかた">
         <button type="button" class="mode" data-m="list" aria-pressed="true"><span aria-hidden="true">☰</span> リスト</button>
         <button type="button" class="mode" data-m="cal" aria-pressed="false"><span aria-hidden="true">▦</span> カレンダー</button>
-      </div>
-      <div class="filters" id="filters" aria-label="種類で絞り込み"></div>
+      </div></div>
+      <div class="ctl ctl-wide"><span class="ctl-l">種類<small>色の見かた・タップで絞り込み</small></span>
+      <div class="filters" id="filters" aria-label="種類で絞り込み"></div></div>
     </div>
 
     <div class="range">
@@ -449,14 +488,29 @@ body{background-image:none}
     <div id="view" class="view"></div>
   </section>
 
-  <section class="subscribe box" aria-labelledby="subTitle">
-    <h2 id="subTitle">ご自身のカレンダーに登録</h2>
-    <p>登録すると、このページに掲載されたセミナー・イベントが<b>ご自身のGoogleカレンダーに自動で追加</b>されます（反映まで数時間〜半日ほどかかります）。</p>
-    <div class="sub-row">
-      <a class="btn-sub" href="https://calendar.google.com/calendar/render?cid=webcal://pol-schedule.github.io/cal-bangnv/calendar.ics" target="_blank" rel="noopener">Googleカレンダーに登録</a>
-      <button type="button" class="btn-copy" id="copyIcs">iPhoneなど向けのURLをコピー</button>
+  <section class="zone z-info" aria-labelledby="zD">
+    <div class="zone-head">
+      <span class="zone-label">Information</span>
+      <h2 id="zD">ご案内</h2>
+      <p>カレンダーへの登録方法と、イベント情報のご提供についてのご案内です。</p>
     </div>
-    <p class="hand" id="copyMsg" hidden>コピーしました。カレンダーアプリの「照会するカレンダーを追加」に貼り付けてください。</p>
+    <div class="info-grid">
+      <div class="subscribe box">
+        <h3>ご自身のカレンダーに登録</h3>
+        <p>登録すると、このページに掲載されたセミナー・イベントが<b>ご自身のGoogleカレンダーに自動で追加</b>されます（反映まで数時間〜半日ほどかかります）。</p>
+        <div class="sub-row">
+          <a class="btn-sub" href="https://calendar.google.com/calendar/render?cid=webcal://pol-schedule.github.io/cal-bangnv/calendar.ics" target="_blank" rel="noopener">Googleカレンダーに登録</a>
+          <button type="button" class="btn-copy" id="copyIcs">iPhoneなど向けのURLをコピー</button>
+        </div>
+        <p class="hand" id="copyMsg" hidden>コピーしました。カレンダーアプリの「照会するカレンダーを追加」に貼り付けてください。</p>
+      </div>
+      <div class="subscribe box">
+        <h3>掲載に関するお願い</h3>
+        <p>日程の掲載は北川が行っておりますが、<b>情報の掲載漏れ</b>があるかもしれません。掲載されていないセミナーやイベントにお気づきの際は、フライヤーをお送りいただけますと大変助かります。</p>
+        <div class="sub-row"><button class="btn-propose" id="proposeBtn" type="button">＋ イベント情報を送る</button></div>
+        <p class="hand">いつもご協力いただき、ありがとうございます。</p>
+      </div>
+    </div>
   </section>
 
   <footer>
