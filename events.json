@@ -80,6 +80,22 @@
   "short": "男塾"
  },
  {
+  "date": "2026-10-25",
+  "open": "18:00",
+  "start": "18:30",
+  "end": "20:30",
+  "type": "event",
+  "title": "Ladies Festival 12th「Unbound」AFTER PARTY",
+  "short": "アフターパーティー",
+  "place": "リーガロイヤルホテル小倉 エンパイアルーム",
+  "addr": "福岡県北九州市小倉北区浅野2-14-2 リーガロイヤルホテル小倉 エンパイアルーム",
+  "fee": "チケット 8,500円",
+  "speakers": "",
+  "host": "",
+  "note": "女性限定のアフターパーティーです。",
+  "img": "flyers/2026-10-25-afterparty.jpg"
+ },
+ {
   "date": "2026-11-01",
   "open": "",
   "start": "20:00",
