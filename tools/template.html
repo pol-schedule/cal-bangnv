@@ -8,7 +8,7 @@
 <title>Purpose of Life Schedule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Shippori+Mincho:wght@600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
 <style>
 html,body{margin:0}img{max-width:100%}
 
@@ -479,11 +479,25 @@ body{background-image:none}
 .mday.dot.has i{background:var(--c);color:var(--on-c);outline:0}
 .cal .pill{font-weight:700}
 .line-ask{background:var(--bg);border-radius:10px;padding:10px 14px;color:var(--ink)!important}
+
+/* ===== 今日の名言 ===== */
+.quote{margin-top:16px;padding:16px 20px 14px;border-radius:14px;background:var(--hl);border:1px solid var(--edge);display:grid;gap:4px;justify-items:center;text-align:center}
+.q-label{font-size:11.5px;font-weight:700;letter-spacing:.12em;color:var(--z-purpose-ink)}
+.q-text{margin:2px 0 0;font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-size:clamp(17px,3.2vw,21px);line-height:1.6;font-weight:600;color:var(--ink);text-wrap:balance;max-width:34em}
+.q-by{margin:0;font-size:12.5px;color:var(--ink-2)}
+.q-next{margin-top:4px;border:0;background:none;font-size:12px;color:var(--ink-3);text-decoration:underline;text-underline-offset:3px;padding:4px 8px}
 </style>
 </head>
 <body>
 
 <div class="wrap">
+  <aside class="quote" aria-label="今日の名言">
+    <span class="q-label">今日の名言</span>
+    <p class="q-text" id="qText"></p>
+    <p class="q-by" id="qBy"></p>
+    <button type="button" class="q-next" id="qNext">ほかの言葉を見る</button>
+  </aside>
+
   <header class="hero">
     <div class="eyebrow">北川グループ</div>
     <div class="title-wrap">
@@ -762,7 +776,8 @@ document.addEventListener("click",ev=>{
   const tab=ev.target.closest(".tab");if(tab){view=tab.dataset.v;try{localStorage.setItem("pol-view",view)}catch(e){};anchor=new Date(today.getFullYear(),today.getMonth(),1);render();return}
   const md=ev.target.closest(".mode");if(md){mode=md.dataset.m;try{localStorage.setItem("pol-mode",mode)}catch(e){};render();return}
   const dy=ev.target.closest("[data-day]");if(dy){openDay(dy.dataset.day);return}
-  const chip=ev.target.closest(".chip");if(chip){const t=chip.dataset.t;active.has(t)?active.delete(t):active.add(t);if(!active.size)Object.keys(TYPES).forEach(k=>active.add(k));renderFilters();render();return}
+  const chip=ev.target.closest(".chip");if(chip){const t=chip.dataset.t;active.has(t)?active.delete(t):active.add(t);if(!active.size)Object.keys(TYPES).forEach(k=>active.add(k));renderFilters();render();
+return}
   const fz=ev.target.closest(".flyer-img.big");if(fz){fz.closest(".modal").classList.toggle("zoomed");return}
   if(ev.target.closest("[data-close]")||ev.target.id==="overlay"){closeModal();return}
   const it=ev.target.closest("[data-id]");if(it&&it.dataset.id!==""){openDetail(it.dataset.id);return}
@@ -775,6 +790,13 @@ $("prev").onclick=()=>step(-1);$("nextBtn").onclick=()=>step(1);
 $("todayBtn").onclick=()=>{anchor=new Date(today.getFullYear(),today.getMonth(),1);render()};
 $("copyIcs").onclick=async()=>{const u="webcal://pol-schedule.github.io/cal-bangnv/calendar.ics";try{await navigator.clipboard.writeText(u)}catch(e){}$("copyMsg").hidden=false};
 renderFilters();render();
+const QUOTES=[["千里の行も足下に始まる", "老子"], ["足るを知る者は富む", "老子"], ["己の欲せざる所は人に施すこと勿れ", "孔子『論語』"], ["学びて思わざれば則ち罔し、思いて学ばざれば則ち殆し", "孔子『論語』"], ["過ぎたるは猶及ばざるが如し", "孔子『論語』"], ["道は近きにあり、然るに諸を遠きに求む", "孟子"], ["至誠にして動かざる者は、未だ之れ有らざるなり", "孟子"], ["桃李もの言わざれども、下おのずから蹊を成す", "『史記』"], ["人間万事塞翁が馬", "『淮南子』"], ["一隅を照らす、此れ則ち国宝なり", "最澄"], ["為せば成る 為さねば成らぬ何事も 成らぬは人の為さぬなりけり", "上杉鷹山"], ["志を立つるを以て万事の源と為す", "吉田松陰"], ["おもしろきこともなき世をおもしろく", "高杉晋作"], ["我以外皆我師", "吉川英治"], ["この道より我を生かす道なし この道を歩く", "武者小路実篤"], ["念ずれば花ひらく", "坂村真民"], ["一日一生", "内村鑑三"], ["天は自ら助くる者を助く", "サミュエル・スマイルズ『自助論』"], ["Stay hungry, stay foolish.", "スティーブ・ジョブズ"], ["速く行きたければ一人で行け。遠くへ行きたければ、みんなで行け。", "アフリカのことわざ"], ["一期一会", "茶道の心得"], ["継続は力なり", "ことわざ"], ["雨垂れ石を穿つ", "ことわざ"], ["七転び八起き", "ことわざ"], ["三人寄れば文殊の知恵", "ことわざ"], ["急がば回れ", "ことわざ"], ["好きこそ物の上手なれ", "ことわざ"], ["笑う門には福来る", "ことわざ"]];
+(function(){let last=-1;try{last=+localStorage.getItem("pol-q")}catch(e){}
+  function show(){let i;do{i=Math.floor(Math.random()*QUOTES.length)}while(QUOTES.length>1&&i===last);last=i;
+    try{localStorage.setItem("pol-q",i)}catch(e){}
+    $("qText").textContent="「"+QUOTES[i][0]+"」";$("qBy").textContent="― "+QUOTES[i][1];}
+  show();$("qNext").onclick=show;})();
+
 })();
 </script>
 
