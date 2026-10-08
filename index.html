@@ -654,15 +654,16 @@ function renderH(){
     return `<div class="row"><div class="mh"><span class="en">${MON_EN[mm.getMonth()]}</span><span class="jp2">${mm.getFullYear()}年${mm.getMonth()+1}月</span></div><div class="evs">${l.length?l.map(e=>{const d=pd(e.date);return `<button type="button" class="mini ${TYPES[e.type].cls}" data-id="${e.id}"><span class="s"><b>${d.getDate()}</b>（${WD[d.getDay()]}）${e.start}・${TYPES[e.type].label}</span><span class="t">${esc(e.title)}</span><span class="s">📍${esc(e.place)}</span></button>`}).join(""):`<div class="empty">予定なし</div>`}</div></div>`}).join("")}</div>`;
 }
 function renderY(){
-  const y=anchor.getFullYear();
-  $("rangeTitle").innerHTML=`${y} <span>${y}年 年間スケジュール</span>`;
+  const a=anchor,b=addM(anchor,11);
+  $("rangeTitle").innerHTML=`${a.getMonth()+1}月 → ${b.getMonth()+1}月 <span>${a.getFullYear()}年${a.getMonth()+1}月から1年分</span>`;
   const evs=visible();
   let h=`<div class="year">`;
-  for(let m=0;m<12;m++){
+  for(let i=0;i<12;i++){
+    const mm=addM(anchor,i),y=mm.getFullYear(),m=mm.getMonth();
     const l=evs.filter(e=>inMonth(e,y,m));
     const past=new Date(y,m+1,0)<today;
     const now=y===today.getFullYear()&&m===today.getMonth();
-    h+=`<div class="ybox box${past?" past":""}${now?" now":""}"><div class="yh"><b>${m+1}月</b><span>${now?"今月":l.length+"件"}</span></div>${l.length?l.map(e=>`<button type="button" class="yrow ${TYPES[e.type].cls}" data-id="${e.id}"><span class="dd">${pd(e.date).getDate()}</span><span class="dt"></span><span class="tt">${esc(e.title)}</span></button>`).join(""):`<div class="empty">予定なし</div>`}</div>`;
+    h+=`<div class="ybox box${past?" past":""}${now?" now":""}"><div class="yh"><b>${m+1}月${y!==a.getFullYear()&&(i===0||m===0)?`<small> ${y}</small>`:""}</b><span>${now?"今月":l.length+"件"}</span></div>${l.length?l.map(e=>`<button type="button" class="yrow ${TYPES[e.type].cls}" data-id="${e.id}"><span class="dd">${pd(e.date).getDate()}</span><span class="dt"></span><span class="tt">${esc(e.title)}</span></button>`).join(""):`<div class="empty">予定なし</div>`}</div>`;
   }
   return h+`</div>`;
 }
@@ -673,7 +674,7 @@ function miniCal(y,m,detail){
   const first=new Date(y,m,1),days=new Date(y,m+1,0).getDate();
   const cnt=evs.filter(e=>inMonth(e,y,m)).length;
   const now=y===today.getFullYear()&&m===today.getMonth();
-  let h=`<div class="mcal box${now?" now":""}${new Date(y,m+1,0)<today?" past":""}"><div class="mcal-h"><b>${m+1}月</b><span>${MON_EN[m]}${y!==today.getFullYear()&&detail!=="year"?" "+y:""}・${cnt}件</span></div><div class="mgrid">${WD.map((w,i)=>`<span class="mw${i===0?" sun":i===6?" sat":""}">${w}</span>`).join("")}`;
+  let h=`<div class="mcal box${now?" now":""}${new Date(y,m+1,0)<today?" past":""}"><div class="mcal-h"><b>${m+1}月</b><span>${MON_EN[m]}${y!==today.getFullYear()?" "+y:""}・${cnt}件</span></div><div class="mgrid">${WD.map((w,i)=>`<span class="mw${i===0?" sun":i===6?" sat":""}">${w}</span>`).join("")}`;
   for(let i=0;i<first.getDay();i++)h+=`<span class="mday blank"></span>`;
   for(let d=1;d<=days;d++){
     const dt=new Date(y,m,d),de=evs.filter(e=>e.date===keyOf(dt));
@@ -695,9 +696,9 @@ function miniCal(y,m,detail){
 function renderCal(){
   if(view==="month")return renderMonth('cal');
   if(view==="y"){
-    const y=anchor.getFullYear();
-    $("rangeTitle").innerHTML=`${y} <span>${y}年 年間カレンダー</span>`;
-    return `<div class="mcals y">${[...Array(12)].map((_,m)=>miniCal(y,m,"year")).join("")}</div>`;
+    const a=anchor,b=addM(anchor,11);
+    $("rangeTitle").innerHTML=`${a.getMonth()+1}月 → ${b.getMonth()+1}月 <span>${a.getFullYear()}年${a.getMonth()+1}月から1年分</span>`;
+    return `<div class="mcals y">${[...Array(12)].map((_,i)=>{const mm=addM(anchor,i);return miniCal(mm.getFullYear(),mm.getMonth(),"year")}).join("")}</div>`;
   }
   const n=view==="q"?3:6;
   const months=[...Array(n)].map((_,i)=>addM(anchor,i));
@@ -720,7 +721,7 @@ function render(){
   renderNext();
 }
 function step(dir){
-  if(view==="y")anchor=new Date(anchor.getFullYear()+dir,0,1);
+  if(view==="y")anchor=addM(anchor,dir*12);
   else anchor=addM(anchor,dir*({month:1,q:3,h:6}[view]));
   render();
 }
@@ -741,7 +742,7 @@ function showModal(html){lastFocus=document.activeElement;const o=$("overlay");o
 function closeModal(){const o=$("overlay");o.hidden=true;o.innerHTML="";lastFocus&&lastFocus.focus&&lastFocus.focus()}
 
 document.addEventListener("click",ev=>{
-  const tab=ev.target.closest(".tab");if(tab){view=tab.dataset.v;try{localStorage.setItem("pol-view",view)}catch(e){};anchor=view==="y"?new Date(anchor.getFullYear(),0,1):new Date(today.getFullYear(),today.getMonth(),1);render();return}
+  const tab=ev.target.closest(".tab");if(tab){view=tab.dataset.v;try{localStorage.setItem("pol-view",view)}catch(e){};anchor=new Date(today.getFullYear(),today.getMonth(),1);render();return}
   const md=ev.target.closest(".mode");if(md){mode=md.dataset.m;try{localStorage.setItem("pol-mode",mode)}catch(e){};render();return}
   const dy=ev.target.closest("[data-day]");if(dy){openDay(dy.dataset.day);return}
   const chip=ev.target.closest(".chip");if(chip){const t=chip.dataset.t;active.has(t)?active.delete(t):active.add(t);if(!active.size)Object.keys(TYPES).forEach(k=>active.add(k));renderFilters();render();return}
@@ -754,10 +755,9 @@ document.addEventListener("keydown",ev=>{
   if((ev.key==="Enter"||ev.key===" ")&&ev.target.matches(".card,.nx")&&ev.target.dataset.id){ev.preventDefault();openDetail(ev.target.dataset.id)}
 });
 $("prev").onclick=()=>step(-1);$("nextBtn").onclick=()=>step(1);
-$("todayBtn").onclick=()=>{anchor=view==="y"?new Date(today.getFullYear(),0,1):new Date(today.getFullYear(),today.getMonth(),1);render()};
+$("todayBtn").onclick=()=>{anchor=new Date(today.getFullYear(),today.getMonth(),1);render()};
 $("proposeBtn").onclick=openPropose;
 $("copyIcs").onclick=async()=>{const u="webcal://pol-schedule.github.io/cal-bangnv/calendar.ics";try{await navigator.clipboard.writeText(u)}catch(e){}$("copyMsg").hidden=false};
-if(view==="y")anchor=new Date(anchor.getFullYear(),0,1);
 renderFilters();render();
 })();
 </script>
