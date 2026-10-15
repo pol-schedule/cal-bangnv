@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="googlebot" content="noindex,nofollow">
+<title>知識の宝箱</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#F5F6F9; --paper:#FFFFFF; --ink:#1F2333; --ink-2:#545A70; --ink-3:#8E93A6;
+  --edge:#D9DDE7; --line:#E5E8EF; --bleu:#2F4A8A; --rouge:#A9535C; --soleil:#F3E4B3; --menthe:#4A7A68; --hl:#FBF6E7;
+  --s1:#2D62C6; --s1-bg:#E3ECFB; --s2:#D0463F; --s2-bg:#FCE6E4; --s3:#D9821A; --s3-bg:#FDF0DD;
+  --s4:#1F9466; --s4-bg:#DFF3EA; --s5:#7B53C4; --s5-bg:#EFE7FB;
+  --ng:#B23B3B; --ng-bg:#FBEDED;
+  --f-display:"Fraunces","Georgia",serif;
+  --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#14161F; --paper:#1C1F2B; --ink:#ECEEF4; --ink-2:#B3B8C9; --ink-3:#7F8599;
+  --edge:#2F3447; --line:#2A2E3E; --bleu:#9CB0E6; --rouge:#D8969D; --soleil:#4A4128; --menthe:#9CC7B6; --hl:#24231E;
+  --s1:#7EA5F2; --s1-bg:#1E2B47; --s2:#F08C86; --s2-bg:#40211F; --s3:#F2B260; --s3-bg:#3D2C14;
+  --s4:#5FCB9E; --s4-bg:#14352A; --s5:#B697F2; --s5-bg:#2D2348; --ng:#F08C86; --ng-bg:#36201F;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14161F; --paper:#1C1F2B; --ink:#ECEEF4; --ink-2:#B3B8C9; --ink-3:#7F8599;
+  --edge:#2F3447; --line:#2A2E3E; --bleu:#9CB0E6; --rouge:#D8969D; --soleil:#4A4128; --menthe:#9CC7B6; --hl:#24231E;
+  --s1:#7EA5F2; --s1-bg:#1E2B47; --s2:#F08C86; --s2-bg:#40211F; --s3:#F2B260; --s3-bg:#3D2C14;
+  --s4:#5FCB9E; --s4-bg:#14352A; --s5:#B697F2; --s5-bg:#2D2348; --ng:#F08C86; --ng-bg:#36201F;
+  color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.8;padding:0 16px 64px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px}
+.wrap{max-width:760px;margin:0 auto}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--soleil);outline-offset:2px}
+.box{background:var(--paper);border:2px solid var(--edge);border-radius:14px;box-shadow:4px 4px 0 var(--edge)}
+.back{display:inline-block;margin-top:18px;color:var(--ink-2);text-decoration:none;font-size:14px}
+.back:hover{color:var(--ink)}
+header{padding:20px 0 6px;text-align:center}
+header .en{font-family:var(--f-display);font-style:italic;color:var(--rouge);font-size:15px}
+header h1{margin:2px 0 6px;font-size:clamp(28px,7vw,40px);line-height:1.3;font-weight:700}
+header p{margin:0 auto;max-width:520px;color:var(--ink-2);font-size:14px}
+
+/* lock */
+.lock{margin:28px auto 0;max-width:420px;padding:24px 20px;text-align:center}
+.lock h2{margin:0 0 6px;font-size:18px}
+.lock p{margin:0 0 14px;color:var(--ink-2);font-size:13.5px}
+.lock form{display:flex;gap:8px}
+.lock input{flex:1;min-width:0;padding:11px 14px;border:2px solid var(--edge);border-radius:999px;background:var(--bg)}
+.btn{border:2px solid var(--edge);background:var(--ink);color:var(--paper);border-radius:999px;padding:10px 20px;font-weight:700;white-space:nowrap}
+.err{color:var(--ng);font-size:13px;margin-top:10px;min-height:1.4em}
+
+/* tools */
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px;display:grid;gap:10px}
+.search{width:100%;padding:12px 16px;border:2px solid var(--edge);border-radius:999px;background:var(--paper);font-size:16px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:2px solid var(--edge);background:var(--paper);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--ink-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-size:12.5px;color:var(--ink-3)}
+
+/* cards */
+.list{display:grid;gap:16px;margin-top:6px}
+.card{padding:0;overflow:hidden}
+.card>summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;gap:6px}
+.card>summary::-webkit-details-marker{display:none}
+.card[open]>summary{border-bottom:2px dashed var(--line)}
+.stage{justify-self:start;font-size:12px;font-weight:700;padding:1px 10px;border-radius:999px}
+.st1{color:var(--s1);background:var(--s1-bg)} .st2{color:var(--s2);background:var(--s2-bg)} .st3{color:var(--s3);background:var(--s3-bg)}
+.st4{color:var(--s4);background:var(--s4-bg)} .st5{color:var(--s5);background:var(--s5-bg)}
+.card h2{margin:0;font-size:18px;line-height:1.5}
+.scene{margin:0;color:var(--ink-2);font-size:13.5px}
+.more{font-size:12.5px;color:var(--ink-3)}
+.card[open] .more{display:none}
+.body{padding:16px 18px 20px;display:grid;gap:18px}
+.body h3{margin:0 0 6px;font-size:14px;color:var(--ink-2);font-weight:700}
+.body p{margin:0}
+.body ul{margin:0;padding-left:1.2em}
+.body li+li{margin-top:4px}
+.pt{background:var(--hl);border-radius:12px;padding:12px 14px}
+.pt h4{margin:0 0 4px;font-size:15px}
+.pt p{color:var(--ink-2);font-size:14px}
+.pts{display:grid;gap:10px}
+.say{display:grid;gap:10px}
+.say figure{margin:0;border-left:4px solid var(--menthe);background:var(--bg);border-radius:0 10px 10px 0;padding:10px 14px}
+.say figcaption{font-size:12.5px;color:var(--ink-3);margin-bottom:2px}
+.say blockquote{margin:0;font-size:15px}
+.ng ul{background:var(--ng-bg);border-radius:12px;padding:12px 14px 12px 2em}
+.ng li::marker{content:"✕  ";color:var(--ng)}
+audio{width:100%}
+.kw{display:flex;flex-wrap:wrap;gap:6px}
+.kw span{font-size:12px;color:var(--ink-3);border:1px solid var(--edge);border-radius:999px;padding:0 9px}
+.meta{font-size:12px;color:var(--ink-3)}
+.empty{text-align:center;color:var(--ink-3);padding:30px 0}
+.foot{margin-top:28px;font-size:12.5px;color:var(--ink-3);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">‹ スケジュールに戻る</a>
+  <header>
+    <div class="en">Knowledge Box</div>
+    <h1>📚 知識の宝箱</h1>
+    <p>アプローチやフォローで迷った時のヒント集です。よくいただくご相談への答え方を、場面ごとにまとめています。</p>
+  </header>
+
+  <section class="lock box" id="lock">
+    <h2>パスワードを入力してください</h2>
+    <p>グループ内でお伝えしているパスワードです。</p>
+    <form id="lockForm">
+      <input id="pw" type="password" autocomplete="current-password" aria-label="パスワード" placeholder="パスワード">
+      <button class="btn" type="submit">開く</button>
+    </form>
+    <div class="err" id="err" role="alert"></div>
+  </section>
+
+  <main id="main" hidden>
+    <div class="tools">
+      <input class="search" id="q" type="search" placeholder="悩みやキーワードで検索（例：怪しい、偏見）" aria-label="検索">
+      <div class="chips" id="chips" role="group" aria-label="段階で絞り込み"></div>
+      <div class="count" id="count"></div>
+    </div>
+    <div class="list" id="list"></div>
+    <p class="foot">ここにない悩みは、北川まで直接ご相談ください。</p>
+  </main>
+</div>
+
+<script>
+const STAGES={1:"① アポを取る前",2:"② アプローチ中",3:"③ 話を聞いてもらった後",4:"④ クロージング・登録の前後",5:"⑤ フォロー"};
+
+/* カードはここに足していく（新しいものを上に） */
+const CARDS=[
+{
+  id:"approach-mindset",
+  date:"2026-10-16",
+  stage:2,
+  title:"アプローチの最中、どんな心構えで話したらいい？",
+  scene:"「一緒にやりたい」と声をかけて話を聞いてもらう時。相手がネットワークビジネスにどんな印象を持っているか分からない時。",
+  points:[
+    {h:"① 「ニナで何をしたいのか」を先に決めて、伝えることを1つに絞る",
+     p:"「あなたと一緒に仕事がしたい」が本音なのに、ついでに「サプリも体にいいよ」と付け足すと、相手は「結局どっちなの？」と戸惑います。カフェの店長にスカウトしておきながら「ついでにコーヒー買って」と言われたら、違和感がありますよね。製品を勧めたいのか、一緒に仕事をしたいのか。アプローチに行く前に、自分の目的と在り方を整えておきましょう。"},
+    {h:"② 相手は「良い印象を持っていない」という前提で話す",
+     p:"この業界は、過去に強引な勧誘やトラブルが多かったため、世間のイメージは私たちが思っている以上に良くありません。「ネットワークの話を聞いてほしい」と言われて警戒するのは、ごく自然な反応です。"},
+    {h:"③ 伝わらなかったら、100%伝える側の責任と考える",
+     p:"相手の知識や理解力のせいにすると、自分の成長が止まります。「どうしたらこの人に伝わるだろう」と考え、たとえ話を変える・相手の趣味に置き換えるなど、伝え方を工夫しましょう。"},
+    {h:"④ 「偏見はないですよ」をそのまま信じない",
+     p:"目の前の相手に「実は嫌いなんです」とは言いにくいものです。「偏見ない」と言ってくれた時ほど、本当は不安がある前提で丁寧に話しましょう。良い印象だと思い込んで進めると、後で本音が出た時に対応できません。"}
+  ],
+  says:[
+    {c:"声をかける時",t:"「〇〇さんと一緒に仕事がしたいと思って、声をかけました。話を聞いたうえで、合うかどうかを〇〇さん自身で判断してもらえたら嬉しいです。」"},
+    {c:"「偏見はないですよ」と言われた時",t:"「そう言っていただけるのは珍しいです。正直、良い印象を持っていない方の方が多い業界だと思っているので、気になることがあれば遠慮なく聞いてください。」"},
+    {c:"「でもネズミ講とかじゃないの？」と続いた時",t:"「そう思われるのは当然だと思います。ネズミ講は法律（無限連鎖講防止法）で禁止されています。ネットワークビジネスは特定商取引法の『連鎖販売取引』としてルールが決められている商売で、そのルールを守ってやっています。」"}
+  ],
+  why:"目的が1つに絞れていると、言葉にブレがなくなり信頼されます。また「悪い印象を持たれていて当たり前」と構えておけば、警戒されても落ち込まず、相手の不安に一つずつ誠実に答えられます。",
+  ng:[
+    "「一緒に組みたい」と言ったあとに、ついでのように製品を勧める",
+    "「偏見ない」という言葉を信じて、不安や疑問の確認を飛ばす",
+    "伝わらなかった時に、相手の理解力のせいにする",
+    "「ほとんどの会社は詐欺」など、他社をひとまとめに悪く言う",
+    "確認できていない有名企業・有名人の名前を出して信用させようとする",
+    "「必ず稼げる」など、収入を約束するような言い方をする"
+  ],
+  audio:"audio/2026-10-16-approach-mindset.m4a",
+  kw:["心構え","在り方","目的","サプリ","製品","ついで","偏見","イメージが悪い","怪しい","警戒","伝わらない","100%責任","たとえ話","声かけ","一緒に組みたい","ネズミ講"]
+}
+];
+
+/* パスワード：SHA-256 で照合（グループ内だけで共有） */
+const PW_HASH="4162020b63801ac9b5d4b795b00e71dc61b2e3704dc3eef46c530479a4d6fffc";
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function unlock(){$("lock").hidden=true;$("main").hidden=false;render()}
+try{if(sessionStorage.getItem("kb-ok")===PW_HASH)unlock()}catch(e){}
+$("lockForm").addEventListener("submit",async ev=>{
+  ev.preventDefault();
+  const h=await sha($("pw").value.trim());
+  if(h===PW_HASH){try{sessionStorage.setItem("kb-ok",h)}catch(e){}unlock()}
+  else $("err").textContent="パスワードが違います。";
+});
+
+let stage=0;
+$("chips").innerHTML=[`<button type="button" class="chip" data-s="0" aria-pressed="true">すべて</button>`]
+  .concat(Object.entries(STAGES).map(([k,v])=>`<button type="button" class="chip" data-s="${k}" aria-pressed="false">${v}</button>`)).join("");
+$("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;stage=+b.dataset.s;
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));render()});
+$("q").addEventListener("input",render);
+
+function text(c){return [c.title,c.scene,c.why,...c.kw,...c.ng,...c.points.flatMap(p=>[p.h,p.p]),...c.says.flatMap(s=>[s.c,s.t])].join(" ").toLowerCase()}
+function card(c,open){
+  return `<details class="card box" id="${c.id}"${open?" open":""}>
+  <summary><span class="stage st${c.stage}">${STAGES[c.stage]}</span><h2>${esc(c.title)}</h2><p class="scene">${esc(c.scene)}</p><span class="more">タップして開く ＋</span></summary>
+  <div class="body">
+    <div><h3>大切な考え方</h3><div class="pts">${c.points.map(p=>`<div class="pt"><h4>${esc(p.h)}</h4><p>${esc(p.p)}</p></div>`).join("")}</div></div>
+    <div class="say"><h3>返し方の例（そのまま使えます）</h3>${c.says.map(s=>`<figure><figcaption>${esc(s.c)}</figcaption><blockquote>${esc(s.t)}</blockquote></figure>`).join("")}</div>
+    <div><h3>ポイント</h3><p>${esc(c.why)}</p></div>
+    <div class="ng"><h3>やってはいけないこと</h3><ul>${c.ng.map(n=>`<li>${esc(n)}</li>`).join("")}</ul></div>
+    ${c.audio?`<div><h3>音声で聞く（北川より）</h3><audio controls preload="none" src="${esc(c.audio)}"></audio></div>`:""}
+    <div class="kw" aria-label="キーワード">${c.kw.map(k=>`<span>#${esc(k)}</span>`).join("")}</div>
+    <div class="meta">掲載日：${c.date.replace(/-/g,"/")}</div>
+  </div></details>`;
+}
+function render(){
+  const q=$("q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const l=CARDS.filter(c=>(!stage||c.stage===stage)&&q.every(w=>text(c).includes(w)));
+  const hash=location.hash.slice(1);
+  $("list").innerHTML=l.length?l.map(c=>card(c,c.id===hash||l.length===1)).join(""):`<div class="empty">該当するカードがありません。別の言葉で探してみてください。</div>`;
+  $("count").textContent=`${l.length}件 / 全${CARDS.length}件`;
+}
+</script>
+</body>
+</html>

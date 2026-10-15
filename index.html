@@ -497,6 +497,13 @@ body{background-image:none}
 .ask-btn{justify-self:start;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;white-space:nowrap}
 .ask-btn:hover{opacity:.9}
 .ask-btn:focus-visible{outline:3px solid var(--soleil);outline-offset:3px}
+.kb-link{margin-top:14px;display:flex;align-items:center;gap:14px;padding:14px 18px;text-decoration:none;color:var(--ink);transition:transform .12s,box-shadow .12s}
+.kb-link:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--edge)}
+.kb-ic{font-size:28px;line-height:1}
+.kb-tx{flex:1;min-width:0;display:grid;line-height:1.5}
+.kb-tx b{font-size:17px}
+.kb-tx small{font-size:12.5px;color:var(--ink-2)}
+.kb-go{font-size:26px;color:var(--ink-3)}
 @media (max-width:640px){.ask{grid-template-columns:minmax(0,1fr);padding:18px 16px;margin-top:16px}.ask-btn{justify-self:stretch;text-align:center}}
 </style>
 </head>
@@ -528,6 +535,12 @@ body{background-image:none}
     </div>
     <a class="ask-btn" href="https://notebooklm.google.com/notebook/9bce4719-bc2d-4809-8c44-f3dd62fcb333" target="_blank" rel="noopener">AIに質問する <span aria-hidden="true">↗</span></a>
   </section>
+
+  <a class="kb-link box" href="knowledge/">
+    <span class="kb-ic" aria-hidden="true">📚</span>
+    <span class="kb-tx"><b>知識の宝箱</b><small>アプローチやフォローで迷った時のヒント集（パスワードが必要です）</small></span>
+    <span class="kb-go" aria-hidden="true">›</span>
+  </a>
 
   <section class="zone z-purpose" aria-labelledby="zA">
     <div class="zone-head">
