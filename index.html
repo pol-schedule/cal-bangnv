@@ -497,13 +497,18 @@ body{background-image:none}
 .ask-btn{justify-self:start;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;white-space:nowrap}
 .ask-btn:hover{opacity:.9}
 .ask-btn:focus-visible{outline:3px solid var(--soleil);outline-offset:3px}
-.kb-link{margin-top:14px;display:flex;align-items:center;gap:14px;padding:14px 18px;text-decoration:none;color:var(--ink);transition:transform .12s,box-shadow .12s}
-.kb-link:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--edge)}
-.kb-ic{font-size:28px;line-height:1}
-.kb-tx{flex:1;min-width:0;display:grid;line-height:1.5}
-.kb-tx b{font-size:17px}
-.kb-tx small{font-size:12.5px;color:var(--ink-2)}
-.kb-go{font-size:26px;color:var(--ink-3)}
+.kb-link{position:relative;margin-top:22px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px 16px;padding:18px 18px 18px 16px;text-decoration:none;color:var(--ink);background:var(--soleil);border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.kb-link:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.kb-link:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.kb-new{position:absolute;top:-13px;left:18px;background:var(--rouge);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;padding:1px 12px;border-radius:999px;border:2px solid var(--ink);transform:rotate(-4deg)}
+.kb-ic{width:52px;height:52px;border-radius:12px;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center}
+.kb-ic svg{width:34px;height:34px}
+.kb-tx{min-width:0;display:grid;line-height:1.45}
+.kb-tx small.en{font-family:var(--f-display);font-style:italic;color:var(--rouge);font-size:13px;font-weight:500}
+.kb-tx b{font-size:clamp(19px,4.6vw,23px);letter-spacing:.03em;color:var(--ink)}
+.kb-tx span{font-size:13px;color:var(--ink-2)}
+.kb-go{background:var(--ink);color:var(--paper);border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;white-space:nowrap}
+@media (max-width:520px){.kb-link{grid-template-columns:auto minmax(0,1fr)}.kb-go{grid-column:1/-1;text-align:center}}
 @media (max-width:640px){.ask{grid-template-columns:minmax(0,1fr);padding:18px 16px;margin-top:16px}.ask-btn{justify-self:stretch;text-align:center}}
 </style>
 </head>
@@ -536,10 +541,11 @@ body{background-image:none}
     <a class="ask-btn" href="https://notebooklm.google.com/notebook/9bce4719-bc2d-4809-8c44-f3dd62fcb333" target="_blank" rel="noopener">AIに質問する <span aria-hidden="true">↗</span></a>
   </section>
 
-  <a class="kb-link box" href="knowledge/">
-    <span class="kb-ic" aria-hidden="true">📚</span>
-    <span class="kb-tx"><b>知識の宝箱</b><small>アプローチやフォローで迷った時のヒント集（パスワードが必要です）</small></span>
-    <span class="kb-go" aria-hidden="true">›</span>
+  <a class="kb-link" href="knowledge/">
+    <span class="kb-new">NEW</span>
+    <span class="kb-ic" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="10" y="6" width="44" height="52" rx="5" fill="#2F4A8A"/><rect x="16" y="6" width="38" height="52" rx="3" fill="#FFFFFF" stroke="#1F2333" stroke-width="2"/><rect x="22" y="16" width="26" height="4" rx="2" fill="#A9535C"/><rect x="22" y="25" width="20" height="3" rx="1.5" fill="#8E93A6"/><rect x="22" y="32" width="23" height="3" rx="1.5" fill="#8E93A6"/><rect x="22" y="39" width="16" height="3" rx="1.5" fill="#8E93A6"/><rect x="44" y="2" width="7" height="18" fill="#F3E4B3" stroke="#1F2333" stroke-width="1.5"/></svg></span>
+    <span class="kb-tx"><small class="en">First Training 10 · Q&amp;A</small><b>FT10 お悩み辞典</b><span>アプローチやフォローで迷ったら、まずここ。よくある相談の返し方をまとめています（パスワードが必要です）</span></span>
+    <span class="kb-go">開く →</span>
   </a>
 
   <section class="zone z-purpose" aria-labelledby="zA">
