@@ -654,7 +654,7 @@ const inMonth=(e,y,m)=>{const d=pd(e.date);return d.getFullYear()===y&&d.getMont
 const addM=(d,n)=>new Date(d.getFullYear(),d.getMonth()+n,1);
 const emptyMsg=["この月の予定はまだありません","この月の予定はまだありません","この月の予定はまだありません"];
 
-const tlabel=e=>e.start+(e.end?"〜"+e.end:"〜");
+const tlabel=e=>e.start?e.start+(e.end?"〜"+e.end:"〜"):"時間未定";
 function flyer(e,big){if(e.img)return `<img class="flyer-img${big?" big":""}" loading="lazy" src="${e.img}" alt="${esc(e.title)}のフライヤー">`;const d=pd(e.date);return `<div class="flyer ${TYPES[e.type].cls}${big?" big":""}" aria-hidden="true"><div class="ft">Purpose of Life</div><div class="fn">${esc(e.title)}</div><div class="fd">${d.getMonth()+1}.${d.getDate()}</div></div>`}
 function dateBig(e){const d=pd(e.date);return `<div class="datebig"><div class="m">${MON_EN[d.getMonth()].slice(0,4)}.</div><div class="d">${d.getDate()}</div><div class="w">${d.getMonth()+1}月（${WD[d.getDay()]}）</div></div>`}
 function card(e){return `<div class="card box ${TYPES[e.type].cls}" tabindex="0" role="button" data-id="${e.id}">${dateBig(e)}${flyer(e)}<div class="body"><span class="tag ${TYPES[e.type].cls}">${TYPES[e.type].label}</span><h4>${esc(e.title)}</h4><div class="meta"><span>${tlabel(e)}</span><span>📍${esc(e.place)}</span></div></div></div>`}
@@ -703,7 +703,7 @@ function renderH(){
   $("rangeTitle").innerHTML=`${a.getMonth()+1}月 → ${b.getMonth()+1}月 <span>向こう半年</span>`;
   const evs=visible();
   return `<div class="rows box">${months.map(mm=>{const l=evs.filter(e=>inMonth(e,mm.getFullYear(),mm.getMonth()));
-    return `<div class="row"><div class="mh"><span class="en">${MON_EN[mm.getMonth()]}</span><span class="jp2">${mm.getFullYear()}年${mm.getMonth()+1}月</span></div><div class="evs">${l.length?l.map(e=>{const d=pd(e.date);return `<button type="button" class="mini ${TYPES[e.type].cls}" data-id="${e.id}"><span class="s"><b>${d.getDate()}</b>（${WD[d.getDay()]}）${e.start}・${TYPES[e.type].label}</span><span class="t">${esc(e.title)}</span><span class="s">📍${esc(e.place)}</span></button>`}).join(""):`<div class="empty">予定なし</div>`}</div></div>`}).join("")}</div>`;
+    return `<div class="row"><div class="mh"><span class="en">${MON_EN[mm.getMonth()]}</span><span class="jp2">${mm.getFullYear()}年${mm.getMonth()+1}月</span></div><div class="evs">${l.length?l.map(e=>{const d=pd(e.date);return `<button type="button" class="mini ${TYPES[e.type].cls}" data-id="${e.id}"><span class="s"><b>${d.getDate()}</b>（${WD[d.getDay()]}）${e.start||"時間未定"}・${TYPES[e.type].label}</span><span class="t">${esc(e.title)}</span><span class="s">📍${esc(e.place)}</span></button>`}).join(""):`<div class="empty">予定なし</div>`}</div></div>`}).join("")}</div>`;
 }
 function renderY(){
   const a=anchor,b=addM(anchor,11);
@@ -781,7 +781,7 @@ function step(dir){
 function openDetail(id){
   const e=E.find(x=>x.id==id);if(!e)return;const d=pd(e.date);
   const rows=[["日付",`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${WD[d.getDay()]}）`],
-    ["時間",[e.open&&("開場 "+e.open),"開始 "+e.start,e.end&&("終了 "+e.end)].filter(Boolean).join("　")],
+    ["時間",[e.open&&("開場 "+e.open),e.start&&("開始 "+e.start),e.end&&("終了 "+e.end)].filter(Boolean).join("　")||"時間未定（決まり次第掲載いたします）"],
     ["会場",esc(e.place)+(e.addr?`<br><span class="sub">${esc(e.addr)}</span>`:"")],
     ["参加費",esc(e.fee)],["登壇",esc(e.speakers)],["主催",esc(e.host)]].filter(r=>r[1]);
   showModal(`<div class="modal box" role="dialog" aria-modal="true" aria-label="${esc(e.title)}"><button class="x" type="button" data-close aria-label="閉じる">×</button><div class="fly-col">${flyer(e,true)}${e.img?'<span class="hand zoom-hint">タップで拡大</span>':""}</div><div><span class="tag ${TYPES[e.type].cls}">${TYPES[e.type].label}</span><h3>${esc(e.title)}</h3><dl class="dl">${rows.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl>${e.note?`<p class="desc">${esc(e.note)}</p>`:""}</div></div>`);

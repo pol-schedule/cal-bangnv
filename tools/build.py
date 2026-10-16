@@ -27,14 +27,15 @@ now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Purpose of Life//Schedule//JA", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
      "X-WR-CALNAME:Purpose of Life", "X-WR-TIMEZONE:Asia/Tokyo", "REFRESH-INTERVAL;VALUE=DURATION:PT6H", "X-PUBLISHED-TTL:PT6H"]
 for e in ev:
-    end = e["end"] or f'{min(int(e["start"][:2]) + 2, 23):02d}:{e["start"][3:]}'
+    allday = not e["start"]
+    end = e["end"] or ("" if allday else f'{min(int(e["start"][:2]) + 2, 23):02d}:{e["start"][3:]}')
     desc = [x for x in [
-        "開場 " + e["open"] if e.get("open") else "", "開始 " + e["start"] + ("／終了 " + e["end"] if e["end"] else "（終了時刻未定）"),
+        "開場 " + e["open"] if e.get("open") else "", ("開始 " + e["start"] + ("／終了 " + e["end"] if e["end"] else "（終了時刻未定）")) if e["start"] else "時間未定",
         "参加費：" + e["fee"] if e.get("fee") else "", "登壇：" + e["speakers"] if e.get("speakers") else "",
         "主催：" + e["host"] if e.get("host") else "", e.get("note", ""),
         "https://pol-schedule.github.io/cal-bangnv/"] if x]
     uid = hashlib.sha1((e["date"] + e["title"]).encode()).hexdigest()[:16] + "@pol-schedule"
-    L += ["BEGIN:VEVENT", "UID:" + uid, "DTSTAMP:" + now, "DTSTART:" + utc(e["date"], e["start"]), "DTEND:" + utc(e["date"], end),
+    L += ["BEGIN:VEVENT", "UID:" + uid, "DTSTAMP:" + now, *(["DTSTART;VALUE=DATE:" + e["date"].replace("-", ""), "DTEND;VALUE=DATE:" + (datetime.date.fromisoformat(e["date"]) + datetime.timedelta(days=e.get("days", 1))).strftime("%Y%m%d")] if allday else ["DTSTART:" + utc(e["date"], e["start"]), "DTEND:" + utc(e["date"], end)]),
           "SUMMARY:" + esc(e["title"]), "LOCATION:" + esc(e.get("addr") or e["place"]), "DESCRIPTION:" + esc("\n".join(desc)), "END:VEVENT"]
 L.append("END:VCALENDAR")
 open(os.path.join(ROOT, "calendar.ics"), "w", encoding="utf-8", newline="").write("\r\n".join(fold(l) for l in L) + "\r\n")
