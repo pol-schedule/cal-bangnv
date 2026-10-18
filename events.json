@@ -128,6 +128,22 @@
   "img": "flyers/2026-11-08-osaka.jpg"
  },
  {
+  "date": "2026-11-28",
+  "open": "13:00",
+  "start": "13:30",
+  "end": "",
+  "type": "seminar",
+  "title": "OSAKA SEMINAR（大阪セミナー）",
+  "short": "大阪セミナー",
+  "place": "大阪産業創造館 5階 AB",
+  "addr": "大阪市中央区本町1-4-5 大阪産業創造館 5階 AB",
+  "fee": "参加費 500円（新規の方 無料）",
+  "speakers": "OP 福島菜生PM／BT 松村和浩DM",
+  "host": "北代優子",
+  "note": "会場は空調の設定温度が低めとなっておりますので、各自で防寒対策をお願いいたします。",
+  "img": "flyers/2026-11-28-osaka.jpg"
+ },
+ {
   "date": "2026-11-29",
   "open": "",
   "start": "",
