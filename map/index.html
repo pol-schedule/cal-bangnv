@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>タイトル達成マップ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* Layout: 最初に「クリスタルをめざす／ラピス以上をめざす」を選ぶ → それぞれ5ステップ → 最後に1枚のフローチャート。 */
+:root{
+  --bg:#F2F4F8; --surface:#FFFFFF; --ink:#1B2338; --muted:#5A6378; --line:#D8DDE8;
+  --accent:#34449C; --accent-ink:#FFFFFF; --soft:#E7EAF7; --warm:#C98A1B; --warm-soft:#FBF1DD;
+  --ok:#1E8C5A; --ok-soft:#E1F3EA; --ng:#C2412D; --ng-soft:#FBE7E3;
+  --g-crystal:#6E98AC; --g-lapis:#2E4A9E; --g-sapphire:#1F6FB2; --g-emerald:#1E8C68; --g-gold:#B08A2C; --g-platinum:#7D8290;
+  --f-disp:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Meiryo",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161F; --surface:#1B2130; --ink:#E9ECF3; --muted:#9AA3B5; --line:#2D3548;
+  --accent:#8C9BF0; --accent-ink:#11152A; --soft:#252C45; --warm:#E8B04A; --warm-soft:#3A2F18;
+  --ok:#5CC98F; --ok-soft:#173326; --ng:#F08A78; --ng-soft:#3A1E1A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161F; --surface:#1B2130; --ink:#E9ECF3; --muted:#9AA3B5; --line:#2D3548;
+  --accent:#8C9BF0; --accent-ink:#11152A; --soft:#252C45; --warm:#E8B04A; --warm-soft:#3A2F18;
+  --ok:#5CC98F; --ok-soft:#173326; --ng:#F08A78; --ng-soft:#3A1E1A; color-scheme:dark}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 60px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0;line-height:1.35}
+h1{font-size:clamp(26px,5vw,36px);font-weight:900}
+h2{font-size:22px;font-weight:700}
+h3{font-size:17px;font-weight:700}
+p{margin:0}
+.lead{color:var(--muted);max-width:62ch}
+.top{display:flex;flex-direction:column;gap:8px}
+.modeline{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
+.sample{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--warm-soft);border:1px solid var(--warm);border-radius:12px;padding:10px 14px;font-size:14px}
+.sample b{color:var(--warm)}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.tab{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:10px;padding:8px 4px;font:700 13px/1.3 var(--f-disp);cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.tab .n{font-size:18px}
+.tab[aria-current="step"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tab:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,3vw,28px);display:flex;flex-direction:column;gap:18px}
+.hint{font-size:14px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label,.flabel{font-weight:700;font-size:14px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-width:0}
+textarea{min-height:76px;resize:vertical}
+input[type=number]{font-variant-numeric:tabular-nums}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+button,.btnlink{font:700 15px/1.2 var(--f-disp);border-radius:999px;padding:12px 20px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);text-decoration:none;display:inline-flex;align-items:center}
+button.ghost,.btnlink.ghost{background:transparent;color:var(--accent)}
+button.small,.btnlink.small{padding:7px 14px;font-size:13px}
+button.warn{background:transparent;border-color:var(--line);color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 12px;font:500 13px var(--f-body);cursor:pointer}
+/* mode chooser */
+.choose{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.mode{all:unset;box-sizing:border-box;cursor:pointer;border:2px solid var(--line);border-radius:18px;padding:20px;background:var(--surface);display:flex;flex-direction:column;gap:10px;color:var(--ink)}
+.mode:hover{border-color:var(--accent)}
+.mode:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.mode .tt{font:900 22px/1.3 var(--f-disp)}
+.mode ul{margin:0;padding-left:20px;font-size:14px;color:var(--muted)}
+.mode .go{font:700 15px var(--f-disp);color:var(--accent)}
+/* results */
+.sides{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.side{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--bg)}
+.side h3{display:flex;align-items:center;gap:8px}
+.lr{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font:900 15px var(--f-disp);flex:none}
+.big{font:900 34px/1 var(--f-disp);font-variant-numeric:tabular-nums}
+.big small{font-size:15px;font-weight:700;color:var(--muted)}
+.row{display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
+.row span:first-child{color:var(--muted)}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.note{border-radius:12px;padding:12px 14px;font-size:14px}
+.note.ok{background:var(--ok-soft);color:var(--ok)}
+.note.ng{background:var(--ng-soft);color:var(--ng)}
+.note.info{background:var(--soft);color:var(--ink)}
+.gem{display:inline-flex;align-items:center;border-radius:999px;padding:3px 10px;font:700 12px/1.4 var(--f-disp);color:#fff;white-space:nowrap}
+.gem.crystal{background:var(--g-crystal)}.gem.lapis{background:var(--g-lapis)}.gem.sapphire{background:var(--g-sapphire)}
+.gem.emerald{background:var(--g-emerald)}.gem.gold{background:var(--g-gold)}.gem.platinum{background:var(--g-platinum)}
+.ladder{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px}
+.ladder .arr{color:var(--muted)}
+.ladder .when{font-variant-numeric:tabular-nums}
+.ladder .late{color:var(--ng);font-weight:700}
+.kp{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.kp .head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.acts{display:flex;flex-direction:column;gap:6px}
+.acts label{display:flex;gap:8px;align-items:flex-start;font-size:14px;cursor:pointer}
+.acts input{width:auto;margin-top:5px}
+/* funnel (crystal) */
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.fstep{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);display:flex;flex-direction:column;gap:2px}
+.fstep .k{font-size:13px;color:var(--muted)}
+.fstep .v{font:900 26px/1.1 var(--f-disp);font-variant-numeric:tabular-nums}
+.fstep .v small{font-size:14px;color:var(--muted)}
+/* 10 slots */
+.slots{display:flex;flex-direction:column;gap:6px}
+.slot{display:grid;grid-template-columns:28px 1fr 132px;gap:6px;align-items:center}
+.slot .no{font:700 13px var(--f-disp);color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
+.slot.have{grid-template-columns:28px 1fr}
+.slot.have .fill{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 12px;font-weight:700;font-size:14px}
+.slot select{padding:10px 6px;font-size:14px}
+.slot.done input{border-color:var(--ok)}
+.count{font:900 20px var(--f-disp);font-variant-numeric:tabular-nums}
+/* summary */
+.sheet{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column}
+.fc-node{border:2px solid var(--accent);border-radius:14px;padding:12px 16px;background:var(--surface);min-width:0}
+.fc-node .lab{font:700 12px var(--f-disp);letter-spacing:.08em;color:var(--accent)}
+.fc-node .val{font:700 18px/1.45 var(--f-disp)}
+.fc-down{display:flex;justify-content:center;color:var(--accent);font:900 18px/1 var(--f-disp);padding:8px 0;text-align:center}
+.fc-top{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.fc-top .mid{color:var(--accent);font:900 22px var(--f-disp);text-align:center}
+.fc-split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fc-col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.fc-sidehead{background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:10px 14px;font-family:var(--f-disp)}
+.fc-sidehead b{font-size:18px}
+.fc-kp{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.fc-kp .nm{font:700 16px var(--f-disp)}
+.fc-kp ul{margin:0;padding-left:18px;font-size:13px}
+.fc-gap{font-size:13px;border-radius:10px;padding:8px 10px}
+.fc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.fc-sq{border:1.5px dashed var(--line);border-radius:10px;min-height:54px;padding:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:11px;line-height:1.3;background:var(--bg);min-width:0;word-break:break-all}
+.fc-sq.have{border:1.5px solid var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:700}
+.fc-sq.cand{border-style:solid;border-color:var(--accent)}
+.fc-sq .st{font-size:10px;color:var(--muted)}
+.fc-bottom{border:2px dashed var(--warm);border-radius:14px;padding:12px 16px;background:var(--warm-soft)}
+.fc-bottom ol{margin:4px 0 0;padding-left:20px}
+.fc-funnel{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;font:700 15px var(--f-disp)}
+.fc-funnel span.p{border:1.5px solid var(--accent);border-radius:999px;padding:6px 14px;background:var(--surface)}
+.fc-funnel .arr{color:var(--accent)}
+.foot{font-size:12px;color:var(--muted)}
+.copybox{width:100%;min-height:160px;font-size:13px}
+.toast{font-size:14px;color:var(--ok);min-height:1.4em}
+.tscroll{overflow-x:auto}
+@media (max-width:640px){
+  .tab .t{font-size:11px}
+  .fc-top{grid-template-columns:1fr}
+  .fc-top .mid{transform:rotate(90deg)}
+  .fc-split{grid-template-columns:1fr}
+  .slot{grid-template-columns:24px 1fr 112px}
+}
+.printsheet{--bg:#F4F6FA;--surface:#FFFFFF;--ink:#1B2338;--muted:#5A6378;--line:#C9D0DE;--accent:#34449C;--accent-ink:#FFFFFF;--soft:#E7EAF7;--warm:#C98A1B;--warm-soft:#FBF1DD;--ok:#1E8C5A;--ok-soft:#E1F3EA;--ng:#C2412D;--ng-soft:#FBE7E3;
+  position:fixed;left:-99999px;top:0;width:1500px;border-radius:0;border:none}
+.printsheet .fc-top{grid-template-columns:1fr auto 1fr}
+.printsheet .fc-top .mid{transform:none}
+.printsheet .fc-split{grid-template-columns:1fr 1fr}
+@media (prefers-reduced-motion:no-preference){.panel{animation:in .25s ease-out}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>タイトル達成マップ</h1>
+    <p class="lead">「どうなりたい？」から始めて、何人・誰を・いつまでに、そのために今週なにをするかを1枚にまとめます。わからへんところは、そのまま相談に回せます。</p>
+    <div class="modeline" id="modeline" hidden><span id="modeName"></span><button class="ghost small" type="button" id="btnMode">めざす道を選び直す</button></div>
+  </header>
+
+  <div class="sample" id="sampleBar" hidden>
+    <span><b>いま見本が入っています</b>（架空の「さくらさん」の例）。</span>
+    <button class="small" type="button" data-clear>自分の分をまっさらから書く</button>
+  </div>
+
+  <!-- 0: どっちの道？ -->
+  <section class="panel" data-step="0">
+    <h2>あなたは、どっちの道？</h2>
+    <p class="hint">左右どっちかのアクティブが10人まだいないなら「クリスタル」から。左右とも10人以上いるなら「ラピス以上」へ。</p>
+    <div class="choose">
+      <button class="mode" type="button" data-mode="crystal">
+        <span class="gem crystal" style="align-self:flex-start">クリスタル</span>
+        <span class="tt">クリスタルをめざす<br>（0から1をつくる）</span>
+        <ul><li>左に10人・右に10人をそろえる、人数勝負</li><li>声をかける人の名前を20マスに書いていく</li><li>毎週、何人に声をかけたらええかが出る</li></ul>
+        <span class="go">こっちで始める →</span>
+      </button>
+      <button class="mode" type="button" data-mode="upper">
+        <span class="chips"><span class="gem lapis">ラピス</span><span class="gem sapphire">サファイア</span><span class="gem emerald">エメラルド</span></span>
+        <span class="tt">ラピス以上をめざす<br>（左右で人を育てる）</span>
+        <ul><li>左右それぞれに、伸ばすキーパーソンを決める</li><li>その人を「いつまでに・どのタイトル」へ</li><li>その人のために自分がやることを決める</li></ul>
+        <span class="go">こっちで始める →</span>
+      </button>
+    </div>
+  </section>
+
+  <nav class="tabs" aria-label="ステップ" id="tabs" hidden></nav>
+
+  <!-- ===== クリスタル ===== -->
+  <section class="panel" data-mode-panel="crystal" data-step="1" hidden>
+    <h2>① どうなりたい？</h2>
+    <div class="field">
+      <label for="c-dream">ニナで、どんな自分になりたい？（ひとことでOK）</label>
+      <textarea id="c-dream" data-f="dream" placeholder="例：自分の健康代くらいは自分で出せるようになりたい"></textarea>
+      <div class="chips" data-dreamchips></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="c-name">あなたの名前</label><input id="c-name" data-f="name" type="text" placeholder="例：さくら"></div>
+      <div class="field"><label for="c-mid">会員番号（わかれば）</label><input id="c-mid" data-f="mid" type="text" inputmode="numeric"></div>
+      <div class="field"><label for="c-month">クリスタルに、いつまでに？</label><select id="c-month" data-f="cMonth"></select></div>
+    </div>
+    <p class="note info" id="c1note"></p>
+    <div class="btns"><span></span><button type="button" data-go="2">次へ：いまの数字</button></div>
+  </section>
+
+  <section class="panel" data-mode-panel="crystal" data-step="2" hidden>
+    <h2>② いまの数字と、あと何人？</h2>
+    <p class="hint">E-Serviceの組織図で左右のアクティブ人数を見て入れてください。<b>わからへん時はアップに「私の左右いま何人？」と聞いたらOK</b>です。</p>
+    <div class="grid2">
+      <div class="field"><label for="c-L">左のアクティブ人数（いま）</label><input id="c-L" data-f="L" type="number" min="0" inputmode="numeric" placeholder="例：3"></div>
+      <div class="field"><label for="c-R">右のアクティブ人数（いま）</label><input id="c-R" data-f="R" type="number" min="0" inputmode="numeric" placeholder="例：1"></div>
+    </div>
+    <div id="c2out"></div>
+    <div class="btns"><button class="ghost" type="button" data-go="1">戻る</button><button type="button" data-go="3">次へ：20マスを埋める</button></div>
+  </section>
+
+  <section class="panel" data-mode-panel="crystal" data-step="3" hidden>
+    <h2>③ 左10マス・右10マスを埋める</h2>
+    <p class="hint">緑のマスは、いまのアクティブです。残りのマスに「声をかけたい人」の名前を書いて、進み具合を選んでいきます。<b>登録した人は、少ない側に置く</b>のが基本です（置き場所はアップと相談）。</p>
+    <div class="sides">
+      <div class="side"><h3><span class="lr">左</span>左 <span class="count" id="cntL"></span></h3><div class="slots" id="slotsL"></div></div>
+      <div class="side"><h3><span class="lr">右</span>右 <span class="count" id="cntR"></span></h3><div class="slots" id="slotsR"></div></div>
+    </div>
+    <div id="c3out"></div>
+    <div class="btns"><button class="ghost" type="button" data-go="2">戻る</button><button type="button" data-go="4">次へ：今週やること</button></div>
+  </section>
+
+  <section class="panel" data-mode-panel="crystal" data-step="4" hidden>
+    <h2>④ 今週やること</h2>
+    <p class="hint">迷ったら、下のボタンから選んでもOKです。</p>
+    <div class="chips" id="c-wchips"></div>
+    <div class="field">
+      <span class="flabel">今週やること（3つまで）</span>
+      <input id="c-w1" data-w="cW:0" type="text" aria-label="今週やること1" placeholder="例：声をかける人を3人決める">
+      <input id="c-w2" data-w="cW:1" type="text" aria-label="今週やること2" placeholder="例：11/15セミナーに1人誘う">
+      <input id="c-w3" data-w="cW:2" type="text" aria-label="今週やること3" placeholder="例：アップにABCの日を相談する">
+    </div>
+    <div class="field">
+      <label for="c-worry">わからへん・止まってるところ（あれば）</label>
+      <textarea id="c-worry" data-f="cWorry" placeholder="例：誰に声をかけたらええか思いつかへん"></textarea>
+    </div>
+    <div class="btns"><button class="ghost" type="button" data-go="3">戻る</button><button type="button" data-go="5">1枚にまとめる</button></div>
+  </section>
+
+  <!-- ===== ラピス以上 ===== -->
+  <section class="panel" data-mode-panel="upper" data-step="1" hidden>
+    <h2>① どうなりたい？</h2>
+    <div class="field">
+      <label for="u-dream">ニナで、どんな自分になりたい？（ひとことでOK）</label>
+      <textarea id="u-dream" data-f="dream" placeholder="例：家族を毎年旅行に連れて行ける自分。ハワイに行く。"></textarea>
+      <div class="chips" data-dreamchips></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="u-name">あなたの名前</label><input id="u-name" data-f="name" type="text"></div>
+      <div class="field"><label for="u-mid">会員番号（わかれば）</label><input id="u-mid" data-f="mid" type="text" inputmode="numeric"></div>
+      <div class="field"><label for="u-rank">なりたいタイトル</label><select id="u-rank" data-f="rank"></select></div>
+      <div class="field"><label for="u-month">いつまでに？</label><select id="u-month" data-f="month"></select></div>
+    </div>
+    <p class="note info" id="u1note"></p>
+    <div class="btns"><span></span><button type="button" data-go="2">次へ：いまの数字</button></div>
+  </section>
+
+  <section class="panel" data-mode-panel="upper" data-step="2" hidden>
+    <h2>② いまの数字は？</h2>
+    <p class="hint">E-Serviceの組織図で左右のアクティブ人数を見て入れてください。<b>わからへん時はアップに聞いたらOK</b>です。</p>
+    <div class="grid2">
+      <div class="field"><label for="u-L">左のアクティブ人数（いま）</label><input id="u-L" data-f="L" type="number" min="0" inputmode="numeric"></div>
+      <div class="field"><label for="u-R">右のアクティブ人数（いま）</label><input id="u-R" data-f="R" type="number" min="0" inputmode="numeric"></div>
+    </div>
+    <div id="u2out"></div>
+    <div class="btns"><button class="ghost" type="button" data-go="1">戻る</button><button type="button" data-go="3">次へ：誰をどこまで</button></div>
+  </section>
+
+  <section class="panel" data-mode-panel="upper" data-step="3" hidden>
+    <h2>③ 左右で、誰をどこまで連れていく？</h2>
+    <p class="hint">ラピスから上は、左右それぞれに「伸びる人」がいてはじめて届きます。左と右に1人ずつ以上、キーパーソンを決めましょう。キーパーソンのタイトルと時期を決めると、その手前のタイトルと時期が自動で出ます。</p>
+    <div class="field" style="max-width:320px">
+      <label for="u-stepM">1つ上のタイトルに上がるのに</label>
+      <select id="u-stepM" data-f="stepM"><option value="1">1か月</option><option value="2">2か月</option><option value="3">3か月</option></select>
+    </div>
+    <div class="sides">
+      <div class="side"><h3><span class="lr">左</span>左のキーパーソン</h3><div id="kpL" class="fc-col"></div><button class="ghost small" type="button" data-add="L">＋ 左に人を足す</button></div>
+      <div class="side"><h3><span class="lr">右</span>右のキーパーソン</h3><div id="kpR" class="fc-col"></div><button class="ghost small" type="button" data-add="R">＋ 右に人を足す</button></div>
+    </div>
+    <div id="u3out"></div>
+    <div class="btns"><button class="ghost" type="button" data-go="2">戻る</button><button type="button" data-go="4">次へ：行動目標</button></div>
+  </section>
+
+  <section class="panel" data-mode-panel="upper" data-step="4" hidden>
+    <h2>④ そのために、何をする？</h2>
+    <p class="hint">キーパーソンごとに、あなたがやることにチェックを入れてください（ファーストトレーニング10の流れです）。最後に「今週やること」を3つまで書きます。</p>
+    <div id="u4acts" class="sides"></div>
+    <div class="field">
+      <span class="flabel">今週やること（3つまで）</span>
+      <input id="u-w1" data-w="w:0" type="text" aria-label="今週やること1">
+      <input id="u-w2" data-w="w:1" type="text" aria-label="今週やること2">
+      <input id="u-w3" data-w="w:2" type="text" aria-label="今週やること3">
+    </div>
+    <div class="field">
+      <label for="u-worry">わからへん・止まってるところ（あれば）</label>
+      <textarea id="u-worry" data-f="worry"></textarea>
+    </div>
+    <div class="btns"><button class="ghost" type="button" data-go="3">戻る</button><button type="button" data-go="5">1枚にまとめる</button></div>
+  </section>
+
+  <!-- ===== 5: 1枚まとめ（共通） ===== -->
+  <section class="panel" data-step="5" hidden>
+    <h2>⑤ 1枚まとめ</h2>
+    <div class="tscroll"><div id="sheet" class="sheet"></div></div>
+    <div class="btns" style="justify-content:flex-start">
+      <button type="button" id="btnPdf">PDFで保存（A4横）</button>
+      <button class="ghost" type="button" id="btnShow">アップに相談する</button>
+    </div>
+    <p class="toast" id="pdfMsg" role="status"></p>
+    <div id="consult" hidden class="field">
+      <label for="consultTxt">この文をコピーして、アップにLINEで送ってください</label>
+      <textarea id="consultTxt" class="copybox" readonly></textarea>
+      <div class="btns" style="justify-content:flex-start">
+        <button class="small" type="button" id="btnCopy">コピーする</button>
+        <a class="btnlink ghost small" id="lineLink" href="#" target="_blank" rel="noopener">LINEで送る画面を開く</a>
+      </div>
+      <p class="toast" id="copyMsg" role="status"></p>
+    </div>
+    <div class="btns"><button class="ghost" type="button" data-go="4">戻る</button><button class="warn small" type="button" data-clear>全部消して最初から</button></div>
+  </section>
+
+  <p class="foot" id="foot"></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+const RANKS=[
+  {k:"crystal",n:"クリスタル",p:200000},{k:"lapis",n:"ラピス",p:500000},{k:"sapphire",n:"サファイア",p:1000000},
+  {k:"emerald",n:"エメラルド",p:3000000},{k:"gold",n:"ゴールド",p:6000000},{k:"platinum",n:"プラチナ",p:12000000}];
+RANKS.forEach(r=>r.a=r.p/20000);
+const ACTS=["①夢・目標を一緒に決める（夢のリストアップ）","②人脈リストを書いてもらう","③アポの取り方を一緒に練習する","④ABCに同席する（A役はアップに頼む）","⑤セミナー・説明会に一緒に誘う（動員）","⑥3〜4日に1回、様子を聞く（フォロー）","⑦毎月の購入（定期）を一緒に確認する"];
+const DREAMS=["家族を旅行に連れて行きたい","健康代を自分で出せるようになりたい","ハワイ（サファイア3か月連続）に行きたい","毎月の収入をもう1本作りたい","仲間と一緒に上がりたい"];
+const CWCHIPS=["声をかける人を3人決める","人脈リストを30人書く","伝えたいメリットを整理する","セミナーとABCの候補日を決めておく","アップにABCをお願いする","セミナーに1人誘う"];
+const ST=["","候補","声かけた","ABC・セミナー済","登録した","今月買った✅"];
+const KEY="nina-titlemap-v2";
+const now=new Date(); const cy=now.getFullYear(), cm=now.getMonth()+1, curIdx=cy*12+(cm-1);
+const ymToIdx=s=>{if(!s)return curIdx;const[a,b]=s.split("-").map(Number);return a*12+(b-1)};
+const idxToYm=i=>`${Math.floor(i/12)}-${String(i%12+1).padStart(2,"0")}`;
+const idxLabel=i=>{const y=Math.floor(i/12),m=i%12+1;return (y!==cy?`${y}年`:"")+`${m}月`};
+const rk=k=>RANKS.find(r=>r.k===k)||RANKS[1];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num=v=>{const n=parseInt(v,10);return isNaN(n)?null:Math.max(0,n)};
+const monthsLeft=ym=>Math.max(1,ymToIdx(ym)-curIdx);
+const gem=(k,t)=>`<span class="gem ${k}">${esc(t||rk(k).n)}</span>`;
+const emptySlots=()=>Array.from({length:10},()=>({name:"",st:0}));
+
+const SAMPLE=()=>({sample:true,mode:null,name:"さくら",mid:"",dream:"自分の健康代は自分で出せるようになって、ハワイに行きたい。",L:"3",R:"1",
+  cMonth:idxToYm(curIdx+3),
+  cSlots:{L:[{name:"ゆみさん",st:3},{name:"職場のAさん",st:2},{name:"いとこ",st:1},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0}],
+          R:[{name:"ママ友のBさん",st:4},{name:"美容室の先生",st:2},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0},{name:"",st:0}]},
+  cW:["声をかける人を3人決める","ゆみさんの登録をアップと一緒にフォロー","11/15セミナーに美容室の先生を誘う"],cWorry:"右に置ける人がなかなか思いつかへん。",
+  rank:"sapphire",month:idxToYm(curIdx+6),stepM:"2",
+  keys:{L:[{name:"見本：あおいさん",mid:"",rank:"lapis",month:idxToYm(curIdx+5),L:"12",R:"6",acts:[0,1,3,4,5]}],
+        R:[{name:"見本：みどりさん",mid:"",rank:"lapis",month:idxToYm(curIdx+8),L:"2",R:"1",acts:[0,1,2,3,5]}]},
+  w:["みどりさんと人脈リストを一緒に書く","あおいさんのABCにアップを頼む","セミナーに右の人を2人誘う"],worry:"右がまだ弱い。みどりさん以外に右で伸ばせる人が思いつかへん。"});
+const BLANK=()=>({sample:false,mode:null,name:"",mid:"",dream:"",L:"",R:"",cMonth:idxToYm(curIdx+3),cSlots:{L:emptySlots(),R:emptySlots()},cW:["","",""],cWorry:"",
+  rank:"lapis",month:idxToYm(curIdx+4),stepM:"2",keys:{L:[],R:[]},w:["","",""],worry:""});
+
+let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+if(!S||!S.keys||!S.cSlots)S=SAMPLE();
+let cur=S.mode?1:0;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const touch=()=>{S.sample=false;save()};
+
+const rankOpts=(sel,from)=>RANKS.filter((r,i)=>i>=from).map(r=>`<option value="${r.k}"${r.k===sel?" selected":""}>${r.n}（左右${r.a}人ずつ）</option>`).join("");
+const monthOpts=sel=>{let h="";for(let i=curIdx;i<=curIdx+30;i++){const v=idxToYm(i);h+=`<option value="${v}"${v===sel?" selected":""}>${Math.floor(i/12)}年${i%12+1}月</option>`}return h};
+
+/* ===== クリスタル ===== */
+function cSide(side){
+  const now=num(S[side])??0, have=Math.min(10,now), sl=S.cSlots[side].slice(0,10-have);
+  const bought=sl.filter(s=>s.st===5).length, total=Math.min(10,have+bought);
+  const left=Math.max(0,10-now);
+  return {now,have,bought,total,left,cand:sl.filter(s=>s.name.trim()).length,rest:Math.max(0,10-total)};
+}
+function cCalc(){
+  const L=cSide("L"),R=cSide("R"), X=L.left+R.left, ml=monthsLeft(S.cMonth), weeks=Math.max(1,Math.round(ml*4.3));
+  const list=Math.ceil(X/0.25), listLo=Math.ceil(X/0.3), listHi=Math.ceil(X/0.2);
+  return {L,R,X,ml,weeks,list,listLo,listHi,perW:Math.ceil(list/weeks),perM:Math.ceil(X/ml)};
+}
+function renderC(){
+  document.getElementById("c1note").innerHTML=`${gem("crystal")} は、<b>左に10人・右に10人</b>のアクティブ（その月に1万P以上買ってる人）がそろうと届きます。期限まで<b>あと${monthsLeft(S.cMonth)}か月</b>。`;
+  const c=cCalc();
+  const box=side=>{const s=c[side],nm=side==="L"?"左":"右",pct=Math.min(100,s.now*10);
+    return `<div class="side"><h3><span class="lr">${nm}</span>${nm}</h3><div class="big">あと${s.left}<small>人</small></div><div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="row"><span>いま</span><span>${s.now}人 / 10人</span></div></div>`};
+  let note;
+  if(num(S.L)===null||num(S.R)===null) note=`<p class="note info">左右の人数を入れると、あと何人・毎週何人に声をかけたらええかが出ます。</p>`;
+  else if(c.X===0) note=`<p class="note ok">もう左右とも10人そろってます。毎月キープできてるか確認して、「ラピス以上をめざす」に進みましょう。</p>`;
+  else { const weak=c.L.left>=c.R.left?"左":"右";
+    note=`<p class="note info">クリスタルは<b>少ない側</b>で決まります。片方だけ増えても上がりません。いまは<b>${weak}</b>が足りない側です。</p>`;
+    if(c.perW>=8) note+=`<p class="note ng">正直に言うと、毎週${c.perW}人に声をかけるペースです。かなり忙しいので、期限を1〜2か月のばすか、アップと一緒に動く日を先に決めておきましょう。</p>`; }
+  document.getElementById("c2out").innerHTML=`<div class="sides">${box("L")}${box("R")}</div>
+   <h3>あと${c.X}人を集めるには？</h3>
+   <div class="funnel">
+     <div class="fstep"><span class="k">人脈リストに書く人数</span><span class="v">${c.list}<small>人</small></span><span class="hint">${c.listLo}〜${c.listHi}人</span></div>
+     <div class="fstep"><span class="k">1週間に声をかける人数</span><span class="v">${c.perW}<small>人</small></span><span class="hint">${c.weeks}週間で</span></div>
+     <div class="fstep"><span class="k">1か月に増やすアクティブ</span><span class="v">+${c.perM}<small>人</small></span><span class="hint">左右あわせて</span></div>
+   </div>
+   <p class="hint">目安：人脈リストに書いた人の2〜3割が仲間になる計算です。</p>${note}`;
+  ["L","R"].forEach(side=>{
+    const s=cSide(side), el=document.getElementById("slots"+side); let h="";
+    for(let i=0;i<10;i++){
+      if(i<s.have){h+=`<div class="slot have"><span class="no">${i+1}</span><span class="fill">✅ いまのアクティブ</span></div>`;continue}
+      const j=i-s.have, p=S.cSlots[side][j]||{name:"",st:0};
+      h+=`<div class="slot${p.st===5?" done":""}"><span class="no">${i+1}</span>
+        <input type="text" id="cs-${side}${j}" data-slot="${side}:${j}" value="${esc(p.name)}" placeholder="声をかけたい人" aria-label="${side==="L"?"左":"右"}${i+1}人目の名前">
+        <select id="cst-${side}${j}" data-slotst="${side}:${j}" aria-label="${side==="L"?"左":"右"}${i+1}人目の進み具合">${ST.map((t,k)=>`<option value="${k}"${k===p.st?" selected":""}>${t||"—"}</option>`).join("")}</select></div>`;
+    }
+    el.innerHTML=h; document.getElementById("cnt"+side).textContent=`${s.total} / 10`;
+  });
+  refreshC3();
+  [0,1,2].forEach(i=>{const el=document.getElementById("c-w"+(i+1));if(document.activeElement!==el)el.value=S.cW[i]||""});
+  document.getElementById("c-wchips").innerHTML=CWCHIPS.map(t=>`<button type="button" class="chip" data-wchip="cW" data-t="${esc(t)}">${esc(t)}</button>`).join("");
+}
+function refreshC3(){
+  const out=side=>{const s=cSide(side),nm=side==="L"?"左":"右";
+    if(s.total>=10)return `<p class="note ok">${nm}：10人そろう計算です。</p>`;
+    const empty=10-s.have-s.cand;
+    return `<p class="note ${empty>0?"ng":"info"}">${nm}：あと${s.rest}人。${empty>0?`まだ名前が入ってないマスが${empty}つあります。人脈リストから書き足しましょう。`:"マスは全部埋まってます。あとは1人ずつ進めるだけ。"}</p>`};
+  ["L","R"].forEach(side=>document.getElementById("cnt"+side).textContent=`${cSide(side).total} / 10`);
+  document.getElementById("c3out").innerHTML=out("L")+out("R")+`<p class="hint">名前を書くだけで、声をかける相手がはっきりします。「候補」→「声かけた」→「ABC・セミナー済」→「登録した」→「今月買った✅」と進めていきましょう。</p>`;
+}
+
+/* ===== ラピス以上 ===== */
+function ladder(p,stepM){const ti=RANKS.findIndex(r=>r.k===p.rank),tm=ymToIdx(p.month),out=[];
+  for(let i=0;i<=ti;i++){const m=tm-(ti-i)*stepM;out.push({r:RANKS[i],m,late:m<curIdx})}return out}
+function rankBy(p,sm,mi){let got=null;ladder(p,sm).forEach(s=>{if(s.m<=mi)got=s.r});return got}
+const contribution=(p,sm,mi)=>{const r=rankBy(p,sm,mi);return r?r.a*2+1:0};
+function nextStep(p,sm){const l=ladder(p,sm);return l.find(s=>s.m>=curIdx)||l[l.length-1]}
+function uSide(side){
+  const r=rk(S.rank),need=r.a,now=num(S[side])??0,left=Math.max(0,need-now),ml=monthsLeft(S.month),ti=ymToIdx(S.month),sm=num(S.stepM)||2;
+  const ks=S.keys[side].filter(p=>p.name||p.rank),cover=ks.reduce((a,p)=>a+contribution(p,sm,ti),0);
+  return {need,now,left,ml,perM:Math.ceil(left/ml),perW:Math.ceil(left/ml/4.3),cover,ks,rest:Math.max(0,need-cover)};
+}
+function kpCard(side,i,p){
+  const sm=num(S.stepM)||2,lad=ladder(p,sm);
+  const ladH=lad.map((s,j)=>`${j?'<span class="arr">→</span>':""}${gem(s.r.k)}<span class="when${s.late?" late":""}">${s.late?"今すぐ（遅れ）":idxLabel(s.m)}</span>`).join("");
+  return `<div class="kp" data-side="${side}" data-i="${i}">
+   <div class="head"><b>キーパーソン${i+1}</b><button class="warn small" type="button" data-del="${side}:${i}">消す</button></div>
+   <div class="grid2">
+    <div class="field"><label for="kn-${side}${i}">名前</label><input id="kn-${side}${i}" data-k="name" type="text" value="${esc(p.name)}"></div>
+    <div class="field"><label for="ki-${side}${i}">会員番号</label><input id="ki-${side}${i}" data-k="mid" type="text" inputmode="numeric" value="${esc(p.mid)}"></div>
+    <div class="field"><label for="kr-${side}${i}">目指すタイトル</label><select id="kr-${side}${i}" data-k="rank">${rankOpts(p.rank,0)}</select></div>
+    <div class="field"><label for="km-${side}${i}">いつまでに</label><select id="km-${side}${i}" data-k="month">${monthOpts(p.month)}</select></div>
+    <div class="field"><label for="kl-${side}${i}">この人の左（いま）</label><input id="kl-${side}${i}" data-k="L" type="number" min="0" value="${esc(p.L)}"></div>
+    <div class="field"><label for="kq-${side}${i}">この人の右（いま）</label><input id="kq-${side}${i}" data-k="R" type="number" min="0" value="${esc(p.R)}"></div>
+   </div>
+   <div class="ladder">${ladH}</div><div class="kneed">${kNeed(p,sm)}</div></div>`;
+}
+function kNeed(p,sm){const ns=nextStep(p,sm),pl=num(p.L),pr=num(p.R),ml=Math.max(1,ns.m-curIdx);
+  if(pl===null||pr===null)return `<p class="hint">この人の左右の人数を入れると、月に何人必要か出ます。</p>`;
+  const aL=Math.max(0,ns.r.a-pl),aR=Math.max(0,ns.r.a-pr);
+  return `<p class="hint">まず ${gem(ns.r.k)}（${idxLabel(Math.max(ns.m,curIdx))}）まで：この人の左あと<b>${aL}人</b>／右あと<b>${aR}人</b>（1か月に左+${Math.ceil(aL/ml)}・右+${Math.ceil(aR/ml)}）</p>`}
+function u3line(side){const c=uSide(side),nm=side==="L"?"左":"右",ti=ymToIdx(S.month);
+  if(!c.ks.length)return `<p class="note ng">${nm}にキーパーソンがいません。${nm}に${c.need}人は、あなた1人で集める計算になります。</p>`;
+  const names=c.ks.map(p=>{const got=rankBy(p,num(S.stepM)||2,ti);return `${esc(p.name||"（名前未入力）")}さん＝${got?got.n:"タイトル前"}`}).join("、");
+  return c.cover>=c.need?`<p class="note ok">${nm}：${idxLabel(ti)}の時点で ${names} → あなたの${nm}に最低${c.cover}人。目標${c.need}人に届く計算です。</p>`
+   :`<p class="note ng">${nm}：${idxLabel(ti)}の時点で ${names} → 最低${c.cover}人。目標${c.need}人まで<b>あと${c.rest}人</b>足りません。キーパーソンの時期を早めるか、もう1人つくるか、直で増やす必要があります。</p>`}
+function refreshU3(){const r=rk(S.rank);document.getElementById("u3out").innerHTML=`<h3>あなたの${gem(r.k)}（${idxLabel(ymToIdx(S.month))}）に間に合う？</h3>${u3line("L")}${u3line("R")}`}
+function renderU(){
+  if(S.rank==="crystal")S.rank="lapis";
+  const r=rk(S.rank);
+  document.getElementById("u1note").innerHTML=`${gem(r.k)} になるには、<b>左に${r.a}人・右に${r.a}人</b>のアクティブが必要です。期限まで<b>あと${monthsLeft(S.month)}か月</b>。`;
+  const box=side=>{const c=uSide(side),nm=side==="L"?"左":"右",pct=Math.min(100,Math.round(c.now/c.need*100));
+    return `<div class="side"><h3><span class="lr">${nm}</span>${nm}</h3><div class="big">あと${c.left}<small>人</small></div><div class="bar"><i style="width:${pct}%"></i></div>
+     <div class="row"><span>いま</span><span>${c.now}人</span></div><div class="row"><span>目標</span><span>${c.need}人</span></div>
+     <div class="row"><span>1か月に増やす人数</span><span><b>+${c.perM}人</b></span></div><div class="row"><span>1週間あたり</span><span>+${c.perW}人</span></div></div>`};
+  const cL=uSide("L"),cR=uSide("R"),weak=cL.left>=cR.left?"L":"R",wc=weak==="L"?cL:cR;let warn;
+  if(num(S.L)===null||num(S.R)===null)warn=`<p class="note info">左右の人数を入れると、あと何人・1か月に何人かが出ます。</p>`;
+  else if(cL.left===0&&cR.left===0)warn=`<p class="note ok">もう左右とも届いてます。次は「毎月キープ」と、次のタイトルを考えましょう。</p>`;
+  else if(wc.perM>=15)warn=`<p class="note ng">正直に言うと、${weak==="L"?"左":"右"}は1か月に${wc.perM}人ずつ増やすペースです。1人の力では厳しいので、③でキーパーソンを2人以上つくるか、期限を見直すのも手です。</p>`;
+  else warn=`<p class="note info">タイトルは<b>少ない側</b>で決まります。いまは${weak==="L"?"左":"右"}が足りない側です。</p>`;
+  if(Math.min(num(S.L)??0,num(S.R)??0)<10&&num(S.L)!==null&&num(S.R)!==null)warn+=`<p class="note info">左右どっちかが10人未満です。まずは「クリスタルをめざす」の20マスから始めるほうが動きやすいかもしれません。</p>`;
+  document.getElementById("u2out").innerHTML=`<div class="sides">${box("L")}${box("R")}</div>${warn}`;
+  ["L","R"].forEach(side=>{document.getElementById("kp"+side).innerHTML=S.keys[side].length?S.keys[side].map((p,i)=>kpCard(side,i,p)).join(""):`<p class="hint">まだいません。「＋」で足してください。</p>`});
+  refreshU3();
+  const all=[];["L","R"].forEach(side=>S.keys[side].forEach((p,i)=>all.push({side,i,p})));
+  document.getElementById("u4acts").innerHTML=all.length?all.map(({side,i,p})=>`<div class="side"><h3><span class="lr">${side==="L"?"左":"右"}</span>${esc(p.name||"キーパーソン"+(i+1))}さんに</h3>
+    <div class="acts">${ACTS.map((a,j)=>`<label><input type="checkbox" data-act="${side}:${i}:${j}"${(p.acts||[]).includes(j)?" checked":""}>${esc(a)}</label>`).join("")}</div></div>`).join("")
+    :`<p class="note info">③でキーパーソンを決めると、ここに一人ずつ出てきます。</p>`;
+  [0,1,2].forEach(i=>{const el=document.getElementById("u-w"+(i+1));if(document.activeElement!==el)el.value=S.w[i]||""});
+}
+
+/* ===== 1枚まとめ ===== */
+function topRow(goalHtml){
+  return `<div class="fc-top"><div class="fc-node"><div class="lab">なりたい姿</div><div class="val">${esc(S.dream||"（まだ書いてない）")}</div></div><div class="mid">→</div>
+   <div class="fc-node"><div class="lab">${esc(S.name||"あなた")}${S.mid?`（${esc(S.mid)}）`:""}の目標</div><div class="val">${goalHtml}</div></div></div>`}
+function weekBox(list,worry){const w=list.filter(x=>x&&x.trim());
+  return `<div class="fc-bottom"><b style="font-family:var(--f-disp)">今週やること</b>${w.length?`<ol>${w.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:'<p class="hint">まだ決めてない → アップに相談</p>'}${worry?`<p class="hint" style="margin-top:6px">止まってるところ：${esc(worry)}</p>`:""}</div>`}
+function renderSheet(el){
+  const stamp=`作成：${cy}年${cm}月${now.getDate()}日`;
+  if(S.mode==="crystal"){
+    const c=cCalc(),ti=ymToIdx(S.cMonth);
+    const col=side=>{const s=c[side],nm=side==="L"?"左":"右",sl=S.cSlots[side];let sq="";
+      for(let i=0;i<10;i++){if(i<s.have){sq+=`<div class="fc-sq have">✅<br>いま</div>`;continue}const p=sl[i-s.have]||{name:"",st:0};
+        sq+=p.name.trim()?`<div class="fc-sq cand${p.st===5?" have":""}">${esc(p.name)}<span class="st">${esc(ST[p.st]||"")}</span></div>`:`<div class="fc-sq">${i+1}</div>`}
+      return `<div class="fc-col"><div class="fc-sidehead"><b>${nm}　いま${s.now}人 → 10人</b><br>あと${s.left}人</div><div class="fc-grid">${sq}</div></div>`};
+    el.innerHTML=topRow(`${idxLabel(ti)}までに ${gem("crystal")}<br><span class="hint">左10人・右10人のアクティブ</span>`)+
+     `<div class="fc-down">↓ 左右10マスを埋める</div><div class="fc-split">${col("L")}${col("R")}</div>
+      <div class="fc-down">↓ あと${c.X}人を集めるには</div>
+      <div class="fc-funnel"><span class="p">人脈リスト ${c.list}人</span><span class="arr">→</span><span class="p">毎週 ${c.perW}人に声かけ</span><span class="arr">→</span><span class="p">ABC・セミナー</span><span class="arr">→</span><span class="p">月に+${c.perM}人</span></div>
+      <div class="fc-down">↓</div>${weekBox(S.cW,S.cWorry)}
+      <p class="foot" style="margin-top:10px">${stamp} ／ クリスタル＝少ない側が20万P。1人2万P×左右10人で計算（1万Pの人が多いと人数はもっと必要）。人脈リストの2〜3割が仲間になる目安。</p>`;
+  } else {
+    const r=rk(S.rank),ti=ymToIdx(S.month),sm=num(S.stepM)||2;
+    const col=side=>{const c=uSide(side),nm=side==="L"?"左":"右";
+      const kps=c.ks.map(p=>{const lad=ladder(p,sm).map((s,j)=>`${j?'<span class="arr">→</span>':""}${gem(s.r.k)}<span class="when${s.late?" late":""}">${s.late?"今すぐ":idxLabel(s.m)}</span>`).join("");
+        const acts=(p.acts||[]).map(j=>`<li>${esc(ACTS[j])}</li>`).join("");
+        return `<div class="fc-kp"><div class="nm">${esc(p.name||"（名前未入力）")}さん${p.mid?`<span class="hint">（${esc(p.mid)}）</span>`:""}</div><div class="ladder">${lad}</div>${acts?`<ul>${acts}</ul>`:'<p class="hint">行動：まだ決めてない → 相談</p>'}</div>`}).join("")||`<div class="fc-kp"><p class="hint">キーパーソンなし</p></div>`;
+      const gap=c.cover>=c.need?`<div class="fc-gap note ok">${idxLabel(ti)}にキーパーソンで最低${c.cover}人 → 届く</div>`:`<div class="fc-gap note ng">キーパーソンで最低${c.cover}人 → あと${c.rest}人足りない</div>`;
+      return `<div class="fc-col"><div class="fc-sidehead"><b>${nm}　いま${c.now}人 → ${c.need}人</b><br>あと${c.left}人（1か月に+${c.perM}人）</div>${kps}${gap}</div>`};
+    el.innerHTML=topRow(`${idxLabel(ti)}までに ${gem(r.k)}<br><span class="hint">左${r.a}人・右${r.a}人のアクティブ</span>`)+
+     `<div class="fc-down">↓ 左右で、誰をどこまで</div><div class="fc-split">${col("L")}${col("R")}</div><div class="fc-down">↓</div>${weekBox(S.w,S.worry)}
+      <p class="foot" style="margin-top:10px">${stamp} ／ 1人2万Pで計算。キーパーソンがタイトルを取ると、その人の左右＋本人ぶんがあなたの片側に乗る（最低人数）。</p>`;
+  }
+}
+function consultText(){
+  const head=`お疲れさまです！タイトル達成マップを書いたので相談させてください。\n\n【なりたい姿】${S.dream||"（未記入）"}\n`;
+  if(S.mode==="crystal"){const c=cCalc();
+    const names=side=>S.cSlots[side].filter(p=>p.name.trim()).map(p=>`${p.name}（${ST[p.st]||"未"}）`).join("、")||"まだ書けてない";
+    const w=S.cW.filter(x=>x&&x.trim());
+    return head+`【目標】${idxLabel(ymToIdx(S.cMonth))}までにクリスタル（左右10人ずつ）\n【いま】左${c.L.now}人（あと${c.L.left}人）／右${c.R.now}人（あと${c.R.left}人）\n\n【左に声をかけたい人】${names("L")}\n【右に声をかけたい人】${names("R")}\n\n【今週やること】\n${w.length?w.map((x,i)=>`${i+1}. ${x}`).join("\n"):"まだ決められてない"}\n\n【わからへん・止まってるところ】\n${S.cWorry||"特になし"}\n\n${S.name||""}`}
+  const r=rk(S.rank),cL=uSide("L"),cR=uSide("R"),sm=num(S.stepM)||2;
+  const kp=side=>S.keys[side].filter(p=>p.name).map(p=>`・${p.name}さん${p.mid?`（${p.mid}）`:""}：${ladder(p,sm).map(s=>`${s.r.n}${s.late?"今すぐ":idxLabel(s.m)}`).join("→")}`).join("\n")||"・まだ決めてない";
+  const w=S.w.filter(x=>x&&x.trim());
+  return head+`【目標】${idxLabel(ymToIdx(S.month))}までに${r.n}（左右${r.a}人ずつ）\n【いま】左${cL.now}人（あと${cL.left}人）／右${cR.now}人（あと${cR.left}人）\n\n【左のキーパーソン】\n${kp("L")}\n→ ${cL.cover>=cL.need?"届く計算":`あと${cL.rest}人足りない`}\n【右のキーパーソン】\n${kp("R")}\n→ ${cR.cover>=cR.need?"届く計算":`あと${cR.rest}人足りない`}\n\n【今週やること】\n${w.length?w.map((x,i)=>`${i+1}. ${x}`).join("\n"):"まだ決められてない"}\n\n【わからへん・止まってるところ】\n${S.worry||"特になし"}\n\n${S.name||""}`;
+}
+
+/* ===== 画面 ===== */
+function syncFields(){
+  document.querySelectorAll("[data-f]").forEach(el=>{if(document.activeElement===el)return;
+    if(el.id==="u-rank"){el.innerHTML=rankOpts(S.rank==="crystal"?"lapis":S.rank,1);return}
+    if(el.id==="u-month"||el.id==="c-month"){el.innerHTML=monthOpts(S[el.dataset.f]);return}
+    el.value=S[el.dataset.f]??""});
+  document.querySelectorAll("[data-dreamchips]").forEach(el=>el.innerHTML=DREAMS.map(d=>`<button type="button" class="chip" data-dream="${esc(d)}">${esc(d)}</button>`).join(""));
+}
+function render(){
+  const tabs=document.getElementById("tabs");
+  tabs.hidden=!S.mode||cur===0;
+  const names=S.mode==="crystal"?["どうなりたい","あと何人","20マス","今週やること","1枚まとめ"]:["どうなりたい","いまの数字","誰をどこまで","行動目標","1枚まとめ"];
+  tabs.innerHTML=names.map((n,i)=>`<button type="button" class="tab" data-go="${i+1}"${cur===i+1?' aria-current="step"':""}><span class="n">${"①②③④⑤"[i]}</span><span class="t">${n}</span></button>`).join("");
+  document.querySelectorAll(".panel").forEach(p=>{const st=Number(p.dataset.step),m=p.dataset.modePanel;p.hidden=!(st===cur&&(!m||m===S.mode))});
+  document.getElementById("modeline").hidden=!S.mode||cur===0;
+  document.getElementById("modeName").innerHTML=S.mode==="crystal"?`いまの道：${gem("crystal")} をめざす`:`いまの道：${gem("lapis","ラピス以上")} をめざす`;
+  document.getElementById("sampleBar").hidden=!S.sample;
+  if(S.mode==="crystal")renderC(); else if(S.mode==="upper")renderU();
+  if(cur===5){renderSheet(document.getElementById("sheet"));const t=consultText();document.getElementById("consultTxt").value=t;document.getElementById("lineLink").href="https://line.me/R/share?text="+encodeURIComponent(t)}
+  document.getElementById("foot").textContent="計算のルール：1人のアクティブ＝20,000P購入の前提で、必要人数＝タイトルの必要ポイント÷20,000Pを左右それぞれに。タイトルは少ない側で決まります。入れた内容はこのスマホ（このブラウザ）にだけ残り、ほかの人には見えません。";
+}
+function go(n){cur=n;render();try{window.scrollTo({top:0,behavior:"smooth"})}catch(e){window.scrollTo(0,0)}}
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button"); if(!t)return;
+  if(t.dataset.mode){S.mode=t.dataset.mode;save();syncFields();go(1);return}
+  if(t.id==="btnMode"){go(0);return}
+  if(t.dataset.go){go(Number(t.dataset.go));return}
+  if(t.dataset.dream){S.dream=(S.dream?S.dream+"。":"")+t.dataset.dream;touch();syncFields();render();return}
+  if(t.dataset.wchip){const arr=S[t.dataset.wchip];const i=arr.findIndex(x=>!x||!x.trim());arr[i<0?2:i]=t.dataset.t;touch();render();return}
+  if(t.dataset.add){S.keys[t.dataset.add].push({name:"",mid:"",rank:"crystal",month:idxToYm(curIdx+2),L:"",R:"",acts:[]});touch();render();return}
+  if(t.dataset.del){const[s,i]=t.dataset.del.split(":");S.keys[s].splice(Number(i),1);touch();render();return}
+  if(t.hasAttribute("data-clear")){const m=S.mode;S=BLANK();S.mode=m;save();syncFields();go(m?1:0);return}
+  if(t.id==="btnShow"){const c=document.getElementById("consult");c.hidden=!c.hidden;return}
+  if(t.id==="btnCopy"){const ta=document.getElementById("consultTxt"),m=document.getElementById("copyMsg");
+    const fb=()=>{ta.focus();ta.select();m.textContent="選択しました。長押し（またはCtrl+C）でコピーしてください。"};
+    try{navigator.clipboard.writeText(ta.value).then(()=>m.textContent="コピーしました。LINEに貼って送ってください。",fb)}catch(err){fb()}return}
+  if(t.id==="btnPdf"){makePdf();return}
+});
+document.addEventListener("input",e=>{
+  const el=e.target;
+  if(el.dataset.f&&el.tagName!=="SELECT"){S[el.dataset.f]=el.value;touch();
+    if(S.mode==="crystal")renderC();else{renderU()}return}
+  if(el.dataset.w){const[a,i]=el.dataset.w.split(":");S[a][Number(i)]=el.value;touch();return}
+  if(el.dataset.slot){const[s,j]=el.dataset.slot.split(":");S.cSlots[s][Number(j)].name=el.value;touch();refreshC3();return}
+  if(el.dataset.k){const card=el.closest(".kp"),p=S.keys[card.dataset.side][Number(card.dataset.i)];p[el.dataset.k]=el.value;touch();
+    card.querySelector(".kneed").innerHTML=kNeed(p,num(S.stepM)||2);refreshU3();return}
+});
+document.addEventListener("change",e=>{
+  const el=e.target;
+  if(el.dataset.f&&el.tagName==="SELECT"){S[el.dataset.f]=el.value}
+  else if(el.dataset.slotst){const[s,j]=el.dataset.slotst.split(":");S.cSlots[s][Number(j)].st=Number(el.value)}
+  else if(el.dataset.k&&el.tagName==="SELECT"){const card=el.closest(".kp");S.keys[card.dataset.side][Number(card.dataset.i)][el.dataset.k]=el.value}
+  else if(el.dataset.act){const[s,i,j]=el.dataset.act.split(":");const p=S.keys[s][Number(i)],n=Number(j);p.acts=p.acts||[];
+    if(el.checked){if(!p.acts.includes(n))p.acts.push(n)}else p.acts=p.acts.filter(x=>x!==n);p.acts.sort((a,b)=>a-b)}
+  else return;
+  touch();render();
+});
+// 入力欄を書き直すと打ちかけの文字が消えるので、数字や名前を打っている間は結果だけ描き直す
+const _renderC=renderC;renderC=function(){const a=document.activeElement;const id=a&&a.id;_renderC();if(id){const n=document.getElementById(id);if(n&&n!==a){n.focus();try{const v=n.value;n.setSelectionRange&&n.type==="text"&&n.setSelectionRange(v.length,v.length)}catch(e){}}}};
+const _renderU=renderU;renderU=function(){const a=document.activeElement;const id=a&&a.id;_renderU();if(id){const n=document.getElementById(id);if(n&&n!==a){n.focus();try{const v=n.value;n.setSelectionRange&&n.type==="text"&&n.setSelectionRange(v.length,v.length)}catch(e){}}}};
+
+/* ===== PDF ===== */
+async function makePdf(){
+  const msg=document.getElementById("pdfMsg");
+  if(!window.html2canvas||!window.jspdf){msg.textContent="PDFの部品が読み込めませんでした。画面をスクリーンショットして保存してください。";return}
+  msg.textContent="PDFを作っています…";
+  const box=document.createElement("div");box.className="sheet printsheet";document.body.appendChild(box);renderSheet(box);
+  try{
+    if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+    const cv=await html2canvas(box,{scale:2,backgroundColor:"#FFFFFF",useCORS:true});
+    const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:"landscape",unit:"mm",format:"a4"});
+    const pw=297,ph=210,m=8,ratio=Math.min((pw-m*2)/cv.width,(ph-m*2)/cv.height),w=cv.width*ratio,h=cv.height*ratio;
+    pdf.addImage(cv.toDataURL("image/jpeg",0.92),"JPEG",(pw-w)/2,m,w,h);
+    const fname=`タイトル達成マップ_${S.name||"自分"}.pdf`;
+    let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null}catch(e){dl=null}
+    if(dl){await dl.save({filename:fname,data:pdf.output("blob")})}else{pdf.save(fname)}
+    msg.textContent="PDFを保存しました。";
+  }catch(err){msg.textContent=err&&err.code==="declined"?"保存をやめました。":"PDFが作れませんでした。画面をスクリーンショットして保存してください。"}
+  finally{box.remove()}
+}
+
+syncFields();render();
+})();
+</script>
+</body>
+</html>
